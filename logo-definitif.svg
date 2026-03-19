@@ -1,0 +1,30 @@
+<svg width="320" height="52" viewBox="0 0 320 52" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="losange-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5B2FD4"/>
+      <stop offset="100%" stop-color="#0A8F82"/>
+    </linearGradient>
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5B2FD4"/>
+      <stop offset="100%" stop-color="#0A8F82"/>
+    </linearGradient>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@700&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Losange : centré verticalement sur 52px → centre y=26 -->
+  <rect x="9" y="9" width="34" height="34" rx="8"
+    transform="rotate(45 26 26)" fill="url(#losange-grad)"/>
+  <!-- R centré dans le losange -->
+  <text x="26" y="36" font-family="Georgia,serif" font-size="30" font-weight="bold"
+    fill="white" text-anchor="middle">R</text>
+
+  <!-- "Conciergerie" : police Outfit 700, letter-spacing -0.01em, centré verticalement -->
+  <text x="62" y="34"
+    font-family="Outfit,sans-serif"
+    font-size="26"
+    font-weight="700"
+    letter-spacing="-0.3"
+    fill="url(#text-grad)">Conciergerie</text>
+</svg>
