@@ -1117,7 +1117,7 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var n,r,i,a,
     </div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
       <button class="btn-back" onclick="goToPage(1)">← Modifier le profil</button>
-      <button class="btn-results" onclick="goToPage(3)">Voir mes résultats →</button>
+      <button class="btn-results" onclick="showEmailModal()">Voir mes résultats →</button>
     </div>
   </div>
   <div class="p2-sub" id="p2-profile-summary">Appartement Standard · 2 voyageurs</div>
@@ -1136,7 +1136,7 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var n,r,i,a,
 
   <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;">
     <button class="btn-back" onclick="goToPage(1)">← Modifier le profil</button>
-    <button class="btn-results" style="flex:1;" onclick="goToPage(3)">Voir mes résultats →</button>
+    <button class="btn-results" style="flex:1;" onclick="showEmailModal()">Voir mes résultats →</button>
   </div>
 </div>
 </div>
@@ -1177,7 +1177,7 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var n,r,i,a,
 
   <!-- Actions export -->
   <div class="export-row">
-    <button class="btn-export btn-pdf" onclick="showEmailModal()">📄 Télécharger le PDF</button>
+    <button class="btn-export btn-pdf" onclick="exportPDF()">📄 Télécharger le PDF</button>
     <button class="btn-export btn-restart" onclick="restart()">🗑️ Tout effacer</button>
   </div>
 
@@ -1627,7 +1627,7 @@ function goToChecklist() {
   goToPage(2);
 }
 
-function goToPage(n) {
+function goToPage(n, fromPopstate) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page' + n).classList.add('active');
   ['sn1','sn2','sn3'].forEach((id,i) => {
@@ -1637,7 +1637,21 @@ function goToPage(n) {
   document.getElementById('nav-score').classList.toggle('visible', n === 2);
   window.scrollTo(0,0);
   if (n === 3) buildResults();
+  // Enregistre l'étape dans l'historique du navigateur (sauf si appelé par popstate)
+  if (!fromPopstate) history.pushState({checklistPage: n}, '');
 }
+
+// Intercepte le bouton "retour" du navigateur
+window.addEventListener('popstate', function(e) {
+  if (e.state && e.state.checklistPage) {
+    goToPage(e.state.checklistPage, true);
+  } else {
+    goToPage(1, true);
+  }
+});
+
+// Initialise l'état de départ dans l'historique
+history.replaceState({checklistPage: 1}, '');
 
 function restart() {
   if (!confirm('🗑️ Tout effacer ?\n\nToutes vos sélections seront supprimées et le formulaire remis à zéro. Cette action est irréversible.')) return;
@@ -2190,7 +2204,11 @@ function showToast(msg) {
 // ══════════════════════════════════════════════
 // MODAL CAPTURE EMAIL
 // ══════════════════════════════════════════════
+let emailCaptured = false;
+
 function showEmailModal() {
+  // Si l'email a déjà été saisi (retour depuis résultats), on passe directement
+  if (emailCaptured) { goToPage(3); return; }
   document.getElementById('emailModal').style.display = 'flex';
   setTimeout(function(){ var el=document.getElementById('em-prenom'); if(el) el.focus(); }, 120);
 }
@@ -2202,7 +2220,7 @@ async function handleEmailSubmit(e) {
   var form = e.target;
   var btn = form.querySelector('.email-submit');
   btn.disabled = true;
-  btn.textContent = '⏳ Envoi en cours…';
+  btn.textContent = '⏳ Un instant…';
   var data = new FormData(form);
   try {
     await fetch('/', {
@@ -2210,9 +2228,10 @@ async function handleEmailSubmit(e) {
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       body: new URLSearchParams(data).toString()
     });
-  } catch(err) { /* silent — on génère le PDF quand même */ }
+  } catch(err) { /* silent */ }
+  emailCaptured = true;
   closeEmailModal();
-  exportPDF();
+  goToPage(3); // → affiche les résultats, le PDF reste disponible sur cette page
 }
 
 // ══════════════════════════════════════════════
@@ -2241,8 +2260,8 @@ let _logoPNG = null;
 </script>
 
 <!-- ── MODAL CAPTURE EMAIL ── -->
-<div id="emailModal" class="email-modal-overlay" style="display:none" onclick="if(event.target===this)closeEmailModal()">
-  <div class="email-modal-box" onclick="event.stopPropagation()">
+<div id="emailModal" class="email-modal-overlay" style="display:none" onclick="if(event.target===this)closeEmailModal()" onmousedown="if(event.target===this)closeEmailModal()">
+  <div class="email-modal-box" onclick="event.stopPropagation()" onmousedown="event.stopPropagation()">
     <button class="email-modal-close" onclick="closeEmailModal()" aria-label="Fermer">✕</button>
     <div class="email-modal-logo">
       <svg width="160" height="26" viewBox="0 0 320 52" xmlns="http://www.w3.org/2000/svg">
@@ -2261,8 +2280,8 @@ let _logoPNG = null;
         <text x="62" y="34" font-family="Outfit,Arial,sans-serif" font-size="26" font-weight="700" fill="url(#em-tg)">Conciergerie</text>
       </svg>
     </div>
-    <div class="email-modal-title">Recevez votre rapport PDF personnalisé</div>
-    <div class="email-modal-sub">Votre liste d'achats prioritaires, prête à imprimer.<br>Gratuit · Sans engagement.</div>
+    <div class="email-modal-title">Accédez à vos résultats personnalisés</div>
+    <div class="email-modal-sub">Votre liste d'achats prioritaires, avec le PDF téléchargeable.<br>Gratuit · Sans engagement.</div>
     <form name="checklist-download" method="POST" data-netlify="true" onsubmit="handleEmailSubmit(event)">
       <input type="hidden" name="form-name" value="checklist-download">
       <div class="email-field">
@@ -2277,7 +2296,7 @@ let _logoPNG = null;
         <input type="checkbox" id="em-rgpd" name="rgpd" value="oui" required>
         <label for="em-rgpd">J'accepte de recevoir des informations et conseils de R Conciergerie. Je peux me désinscrire à tout moment. <a href="confidentialite.html" target="_blank" style="color:#5B2FD4;font-weight:600;text-decoration:underline;">Politique de confidentialité</a></label>
       </div>
-      <button type="submit" class="email-submit">📄 Télécharger mon rapport PDF</button>
+      <button type="submit" class="email-submit">Voir mes résultats →</button>
     </form>
     <div class="email-modal-note">🔒 Vos données restent confidentielles — aucune revente, aucun spam.</div>
   </div>
