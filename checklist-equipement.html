@@ -51,31 +51,21 @@ body::before{
 
 /* ── NAV ── */
 .nav{
-  position:sticky;top:0;z-index:200;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 36px;
-  background:rgba(248,248,250,.96);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border);
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);
+  z-index:200;display:flex;align-items:center;gap:20px;
+  padding:12px 18px 12px 24px;
+  background:rgba(255,255,255,0.78);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+  border-radius:60px;border:1px solid var(--border);
+  box-shadow:0 8px 30px rgba(0,0,0,0.07);white-space:nowrap;
 }
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.nav-logo-diamond{
-  width:36px;height:36px;border-radius:8px;
-  background:linear-gradient(135deg,#5B2FD4,#0A8F82);
-  transform:rotate(45deg);display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.nav-logo-r{
-  transform:rotate(-45deg);
-  font-family:Georgia,serif;font-size:20px;font-weight:700;color:#fff;
-  line-height:1;display:block;
-}
-.nav-logo-text{
-  font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;letter-spacing:-.3px;
-  background:linear-gradient(120deg,#5B2FD4,#0A8F82);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-}
+body{padding-top:80px;}
+.nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:1rem;letter-spacing:-.01em;}
+.nav-logo-img{height:2.3rem;width:auto;object-fit:cover;object-position:center;}
+.nav-logo span{background:linear-gradient(135deg,#5B2FD4,#0A8F82);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nav-links{display:flex;gap:20px;}
+.nav-links a{color:var(--fg);text-decoration:none;font-size:0.8rem;font-weight:500;opacity:0.4;transition:opacity .2s;}
+.nav-links a:hover{opacity:1;}
+.nav-hamburger{display:none;}
 .steps-nav{display:flex;align-items:center;}
 .sn{display:flex;align-items:center;gap:7px;}
 .sn-dot{
@@ -114,7 +104,25 @@ body::before{
 /* ── PAGE 1 — PROFIL ── */
 .p1-wrap{max-width:700px;margin:0 auto;padding:28px 24px 80px;}
 .page-title{font-size:26px;font-weight:800;color:var(--fg);letter-spacing:-.4px;margin-bottom:4px;}
-.page-sub{font-size:13.5px;color:var(--muted);font-weight:400;margin-bottom:28px;line-height:1.5;}
+.page-sub{font-size:14px;color:var(--muted);font-weight:400;margin-bottom:20px;line-height:1.6;}
+
+/* ── INTRO OUTIL (page 1) ── */
+.intro-tool{
+  background:linear-gradient(135deg,rgba(91,47,212,.05),rgba(10,143,130,.05));
+  border:1px solid rgba(91,47,212,.14);border-radius:14px;
+  padding:16px 20px;margin-bottom:24px;
+}
+.intro-tool-hook{font-size:14.5px;color:var(--fg);line-height:1.65;margin-bottom:10px;}
+.intro-tool-steps{
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px;
+  font-size:12.5px;font-weight:600;color:var(--purple);
+}
+.intro-step{
+  background:rgba(91,47,212,.09);border-radius:999px;
+  padding:3px 12px;white-space:nowrap;
+}
+.intro-arrow{color:var(--muted);font-size:11px;}
+@media(max-width:500px){.intro-tool-steps{gap:4px;}.intro-step{font-size:11.5px;padding:3px 9px;}}
 .sec{margin-bottom:20px;}
 .sec-label{font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:8px;}
 .sec-hint{font-size:12.5px;color:var(--muted);margin-bottom:9px;font-style:italic;}
@@ -437,8 +445,26 @@ body::before{
 @media(max-width:640px){.results-top-row{grid-template-columns:1fr;}}
 
 /* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .nav-hamburger{
+    display:flex;flex-direction:column;gap:5px;
+    background:none;border:none;cursor:pointer;padding:6px;
+  }
+  .nav-hamburger span{display:block;width:20px;height:2px;background:var(--fg);border-radius:2px;}
+  .nav-links.nav-open{
+    display:flex;flex-direction:column;
+    position:fixed;top:72px;left:50%;transform:translateX(-50%);
+    background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);
+    border-radius:18px;padding:14px 22px;gap:4px;
+    border:1px solid var(--border);box-shadow:0 8px 30px rgba(0,0,0,.1);
+    z-index:199;width:200px;
+  }
+  .nav-links.nav-open a{padding:8px 0;border-bottom:1px solid var(--border);font-size:0.88rem;opacity:1;}
+  .nav-links.nav-open a:last-child{border-bottom:none;}
+}
 @media(max-width:600px){
-  .nav{padding:12px 16px;}
+  .nav{padding:10px 14px;gap:12px;}
   .sn-lbl{display:none;}
   .p1-wrap,.p2-wrap,.p3-wrap{padding-left:16px;padding-right:16px;}
   .cnt-row{flex-wrap:wrap;}
@@ -882,10 +908,18 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var n,r,i,a,
 
 <!-- ══ NAVIGATION ══ -->
 <nav class="nav" id="main-nav">
-  <div class="nav-logo">
-    <div class="nav-logo-diamond"><span class="nav-logo-r">R</span></div>
-    <span class="nav-logo-text">Conciergerie</span>
+  <a href="index.html" class="nav-logo">
+    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNUIyRkQ0Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBBOEY4MiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPCEtLSBDYXJyw6kgdG91cm7DqSA0NcKwIGF2ZWMgY29pbnMgYXJyb25kaXMgPSBsb3NhbmdlIC0tPgogIDxyZWN0IHg9IjMyIiB5PSIzMiIgd2lkdGg9IjExNiIgaGVpZ2h0PSIxMTYiIHJ4PSIyNCIKICAgIHRyYW5zZm9ybT0icm90YXRlKDQ1IDkwIDkwKSIgZmlsbD0idXJsKCNnKSIvPgogIDwhLS0gR3JhbmQgUiBjZW50csOpIC0tPgogIDx0ZXh0IHg9IjkwIiB5PSIxMjIiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLHNlcmlmIiBmb250LXNpemU9IjEwMCIgZm9udC13ZWlnaHQ9ImJvbGQiCiAgICBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UjwvdGV4dD4KPC9zdmc+" alt="Logo R Conciergerie" class="nav-logo-img">
+    <span>Conciergerie</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#services">Notre offre</a>
+    <a href="index.html#histoire">Notre histoire</a>
+    <a href="index.html#avis">Avis</a>
   </div>
+  <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('nav-open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
   <div class="steps-nav">
     <div class="sn active" id="sn1"><div class="sn-dot">1</div><div class="sn-lbl">Profil</div></div>
     <div class="sn-line"></div>
@@ -905,6 +939,20 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var n,r,i,a,
 <div class="p1-wrap">
   <div class="page-title">Configurez votre <span class="grad-word">logement</span></div>
   <div class="page-sub">Ces informations permettent de calculer précisément vos équipements et quantités nécessaires pour une mise en location optimale sur Airbnb.</div>
+
+  <div class="intro-tool">
+    <div class="intro-tool-hook">
+      Vous souhaitez savoir quels équipements sont nécessaires pour mettre votre logement en <strong>location courte durée</strong> ?
+      Utilisez cet outil gratuit pour obtenir votre <strong>liste d'achats personnalisée</strong> — adaptée à votre type de logement, votre capacité et votre niveau de prestation.
+    </div>
+    <div class="intro-tool-steps">
+      <span class="intro-step">① Configurez votre logement</span>
+      <span class="intro-arrow">›</span>
+      <span class="intro-step">② Cochez vos équipements</span>
+      <span class="intro-arrow">›</span>
+      <span class="intro-step">③ Téléchargez votre rapport PDF</span>
+    </div>
+  </div>
 
   <!-- Type + Gamme -->
   <div class="inline-row">
@@ -1316,6 +1364,7 @@ const SECTIONS = [
   {
     id:'s8', title:'Rangement & Espace de vie', ico:'🚪',
     items:[
+      {id:'pateres', name:'Patères / portemanteau d\'entrée', level:'obl', qty:'4 à 6 patères (ou 1 portemanteau)', note:'À l\'entrée du logement — premier contact du voyageur. Permet de poser vestes, sacs et clés dès l\'arrivée. Indispensable tous logements, toutes gammes'},
       {id:'armoire', name:'Armoire ou colonne dressing', level:'obl', qty:()=>`${Math.max(1,state.chambres)} espace(s) de rangement`, note:'1 par chambre + espace commun'},
       {id:'cintres', name:'Cintres uniformes (velours ou bois)', level:'obl', qty:()=>`${Math.max(1,state.chambres)*10} cintres minimum`, note:'10 min par espace — jamais dépareillés'},
       {id:'cintres-dep', name:'Cintres dépareillés', level:'int', note:'Dégrade fortement la perception qualité'},
@@ -1330,6 +1379,9 @@ const SECTIONS = [
       {id:'canape-lit', name:'Canapé-lit (couchage supplémentaire)', level:()=>capacite()>=4?'pre':'nn', qty:'1 canapé-lit', note:'Préconisé ≥4 voyageurs comme couchage supplémentaire — INTERDIT si seul couchage disponible', condition:()=>capacite()>=4},
       {id:'table-basse', name:'Table basse (salon)', level:'pre', qty:'1 table basse', note:'Préconisée avec canapé — confort espace de vie', condition:()=>state.chambres>=1},
       {id:'canape-lit-studio', name:'Canapé-lit (studio sans chambre séparée)', level:'int', note:'Inconfort perçu — lit fixe préféré si aucune chambre séparée', condition:()=>state.chambres===0},
+      {id:'meuble-tv', name:'Meuble TV / support TV', level:'std', qty:'1 unité', note:'Préférer un meuble TV bas avec rangement plutôt qu\'un support mural seul — espace de rangement apprécié'},
+      {id:'tapis-salon', name:'Tapis de salon / séjour', level:()=>isPremium()?'pre':'std', qty:'1 tapis', note:'Apporte chaleur et délimite l\'espace de vie — essentiel sur carrelage, fortement recommandé en premium. Choisir un tapis facile d\'entretien (lavable ou antipoussière)'},
+      {id:'tapis-chambre', name:'Tapis de chambre (descente de lit)', level:'std', qty:()=>`${Math.max(1,state.chambres)} tapis`, note:'1 par chambre — indispensable si sol carrelé pour le confort au lever. Choisir antiglisse et lavable en machine'},
     ]
   },
   {
@@ -2190,7 +2242,7 @@ let _logoPNG = null;
 
 <!-- ── MODAL CAPTURE EMAIL ── -->
 <div id="emailModal" class="email-modal-overlay" style="display:none" onclick="if(event.target===this)closeEmailModal()">
-  <div class="email-modal-box">
+  <div class="email-modal-box" onclick="event.stopPropagation()">
     <button class="email-modal-close" onclick="closeEmailModal()" aria-label="Fermer">✕</button>
     <div class="email-modal-logo">
       <svg width="160" height="26" viewBox="0 0 320 52" xmlns="http://www.w3.org/2000/svg">
