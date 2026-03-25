@@ -806,6 +806,49 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
     .stat-val{font-size:2rem;}
   }
 
+/* ── SECTION CHECKLIST ── */
+.checklist-section{
+  padding:80px 24px;max-width:1060px;margin:0 auto;
+}
+.checklist-card{
+  background:linear-gradient(135deg,rgba(91,47,212,.06) 0%,rgba(10,143,130,.06) 100%);
+  border:1px solid rgba(91,47,212,.15);
+  border-radius:24px;padding:52px 48px;
+  display:grid;grid-template-columns:1fr auto;align-items:center;gap:32px;
+}
+.checklist-card-tag{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(91,47,212,.1);border:1px solid rgba(91,47,212,.2);
+  border-radius:999px;padding:4px 14px;
+  font-size:.75rem;font-weight:700;color:var(--purple);letter-spacing:.05em;
+  text-transform:uppercase;margin-bottom:16px;
+}
+.checklist-card h2{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:800;line-height:1.2;letter-spacing:-.02em;margin-bottom:12px;}
+.checklist-card p{font-size:.95rem;color:var(--muted);line-height:1.65;max-width:480px;margin-bottom:0;}
+.checklist-features{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+.checklist-feat{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(255,255,255,.7);border:1px solid var(--border);
+  border-radius:999px;padding:5px 14px;
+  font-size:.8rem;font-weight:500;color:var(--fg);
+}
+.checklist-cta{
+  display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+  padding:16px 28px;border-radius:14px;
+  background:linear-gradient(135deg,#5B2FD4,#0A8F82);color:#fff;
+  font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;text-decoration:none;
+  box-shadow:0 6px 20px rgba(91,47,212,.28);
+  transition:opacity .15s,transform .15s,box-shadow .15s;flex-shrink:0;
+}
+.checklist-cta:hover{opacity:.9;transform:translateY(-2px);box-shadow:0 10px 28px rgba(91,47,212,.36);}
+.checklist-cta-sub{font-size:.75rem;opacity:.7;font-weight:400;display:block;margin-top:3px;}
+@media(max-width:760px){
+  .checklist-card{grid-template-columns:1fr;text-align:center;padding:36px 24px;}
+  .checklist-card p{max-width:none;}
+  .checklist-features{justify-content:center;}
+  .checklist-cta{width:100%;justify-content:center;}
+}
+
 </style>
 
 <script>
@@ -830,6 +873,7 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
     <a href="#services">Notre offre</a>
     <a href="#histoire">Notre histoire</a>
     <a href="#avis">Avis</a>
+    <a href="checklist-equipement.html">Checklist équipement</a>
   </div>
   <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('nav-open')" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -1179,6 +1223,27 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
   </div>  </div>
 </section>
 
+<!-- SECTION CHECKLIST ÉQUIPEMENT -->
+<section class="checklist-section">
+  <div class="checklist-card">
+    <div class="checklist-card-content">
+      <div class="checklist-card-tag">📋 Outil gratuit</div>
+      <h2>Votre logement est-il<br><span class="g">prêt pour la location courte durée ?</span></h2>
+      <p>Évaluez l'équipement de votre appartement ou maison en quelques minutes. Notre checklist de 180+ points identifie ce qui est obligatoire, ce qui est recommandé, et génère votre liste d'achats personnalisée en PDF.</p>
+      <div class="checklist-features">
+        <span class="checklist-feat">✅ 180+ équipements vérifiés</span>
+        <span class="checklist-feat">🏠 Appartement &amp; maison</span>
+        <span class="checklist-feat">📄 Rapport PDF inclus</span>
+        <span class="checklist-feat">⭐ Standard / Premium</span>
+      </div>
+    </div><!-- /checklist-card-content -->
+    <a href="checklist-equipement.html" class="checklist-cta">
+      Accéder à la checklist →
+      <span class="checklist-cta-sub">Gratuit · Sans inscription</span>
+    </a>
+  </div>
+</section>
+
 <!-- CONTACT & MENTIONS -->
 <div class="cta-final always-visible" id="contact">
   <h2>Parlons de <span class="g">votre logement</span></h2>
@@ -1190,10 +1255,11 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
   <div class="footer-inner">
     <div class="footer-mentions">
       <strong>Mentions légales</strong>
-      <span>Éditeur du site : R-CONCIERGERIE</span>
-      <span>SIREN : 990 295 057</span>
+      <span>Éditeur du site : R Conciergerie — SASU</span>
+      <span>SIRET : 990 295 057 00014</span>
       <span>Siège social : 1B rue de Paris, 77220 Gretz-Armainvilliers, France</span>
       <span>Email : <a href="mailto:vroy.conciergerie@gmail.com">vroy.conciergerie@gmail.com</a></span>
+      <span><a href="confidentialite.html" style="color:inherit;text-decoration:underline;opacity:0.7;">Politique de confidentialité</a></span>
     </div>
     <span class="footer-copy">© 2026 R Conciergerie</span>
   </div>
