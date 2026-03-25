@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Politique de confidentialité · R Conciergerie</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --purple:#5B2FD4;
+  --teal:#0A8F82;
+  --bg:#F8F8FA;
+  --fg:#0D0D12;
+  --muted:rgba(13,13,18,.45);
+  --border:rgba(13,13,18,.07);
+  --grad:linear-gradient(135deg,#5B2FD4 0%,#0A8F82 100%);
+}
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--bg);
+  color:var(--fg);
+  min-height:100vh;
+  position:relative;
+  overflow-x:hidden;
+  line-height:1.75;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:
+    radial-gradient(circle at 10% 8%, rgba(91,47,212,.16) 0%, rgba(91,47,212,.09) 16%, rgba(91,47,212,.00) 42%),
+    radial-gradient(circle at 92% 88%, rgba(10,143,130,.16) 0%, rgba(10,143,130,.08) 18%, rgba(10,143,130,.00) 44%);
+}
+
+/* NAV */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 36px;
+  background:rgba(248,248,250,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:200;
+}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo-img{height:36px;width:auto;}
+.nav-logo span{
+  font-size:.95rem;font-weight:700;letter-spacing:-.3px;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.nav-back{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.88rem;font-weight:600;color:var(--purple);text-decoration:none;
+  padding:7px 16px;border-radius:50px;border:1.5px solid rgba(91,47,212,.25);
+  transition:background .15s;
+}
+.nav-back:hover{background:rgba(91,47,212,.07);}
+
+/* CONTENU */
+.page-wrap{max-width:760px;margin:0 auto;padding:56px 24px 80px;}
+
+.page-header{text-align:center;margin-bottom:48px;}
+.page-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(91,47,212,.09);border:1px solid rgba(91,47,212,.2);
+  border-radius:999px;padding:4px 16px;
+  font-size:.72rem;font-weight:700;color:var(--purple);letter-spacing:.08em;text-transform:uppercase;
+  margin-bottom:16px;
+}
+.page-header h1{
+  font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-.03em;
+  margin-bottom:12px;
+}
+.page-header .g{
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.page-header p{font-size:.95rem;color:var(--muted);}
+
+/* SECTIONS */
+.section-block{
+  background:#fff;border:1px solid var(--border);border-radius:18px;
+  padding:28px 32px;margin-bottom:16px;
+}
+.section-block h2{
+  font-size:1rem;font-weight:700;color:var(--purple);
+  display:flex;align-items:center;gap:8px;margin-bottom:12px;
+  letter-spacing:-.01em;
+}
+.section-block h2 .ico{font-size:1.1rem;}
+.section-block p{font-size:.92rem;color:#374151;line-height:1.75;margin-bottom:10px;}
+.section-block p:last-child{margin-bottom:0;}
+.section-block ul{
+  list-style:none;padding:0;margin:0;
+  display:flex;flex-direction:column;gap:6px;
+}
+.section-block ul li{
+  font-size:.92rem;color:#374151;padding-left:16px;position:relative;line-height:1.6;
+}
+.section-block ul li::before{
+  content:'›';position:absolute;left:0;color:var(--teal);font-weight:700;
+}
+
+/* TABLE */
+.data-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.88rem;}
+.data-table th{
+  background:rgba(91,47,212,.07);color:var(--purple);
+  font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;
+  padding:8px 12px;text-align:left;
+}
+.data-table td{
+  padding:9px 12px;border-bottom:1px solid var(--border);
+  color:#374151;line-height:1.55;vertical-align:top;
+}
+.data-table tr:last-child td{border-bottom:none;}
+
+/* CONTACT BLOCK */
+.contact-block{
+  background:linear-gradient(135deg,rgba(91,47,212,.06),rgba(10,143,130,.06));
+  border:1px solid rgba(91,47,212,.15);border-radius:14px;
+  padding:20px 24px;margin-top:12px;
+  display:flex;align-items:center;gap:14px;
+}
+.contact-block-icon{
+  width:44px;height:44px;border-radius:12px;background:var(--grad);
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;
+}
+.contact-block p{font-size:.88rem;color:#374151;margin:0;}
+.contact-block a{color:var(--purple);font-weight:600;text-decoration:none;}
+.contact-block a:hover{text-decoration:underline;}
+
+/* DATE */
+.update-note{
+  text-align:center;font-size:.78rem;color:var(--muted);
+  margin-top:36px;padding-top:24px;border-top:1px solid var(--border);
+}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);padding:24px;
+  text-align:center;font-size:.8rem;color:var(--muted);
+}
+footer a{color:var(--purple);text-decoration:none;font-weight:500;}
+footer a:hover{text-decoration:underline;}
+
+@media(max-width:600px){
+  nav{padding:12px 16px;}
+  .page-wrap{padding:36px 16px 60px;}
+  .section-block{padding:20px 18px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNUIyRkQ0Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzBBOEY4MiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3QgeD0iMzIiIHk9IjMyIiB3aWR0aD0iMTE2IiBoZWlnaHQ9IjExNiIgcng9IjI0IgogICAgdHJhbnNmb3JtPSJyb3RhdGUoNDUgOTAgOTApIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHRleHQgeD0iOTAiIHk9IjEyMiIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMTAwIiBmb250LXdlaWdodD0iYm9sZCIKICAgIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5SPC90ZXh0Pgo8L3N2Zz4=" alt="Logo R Conciergerie" class="nav-logo-img">
+    <span>Conciergerie</span>
+  </a>
+  <a href="index.html" class="nav-back">← Retour au site</a>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="page-header">
+    <div class="page-tag">🔒 Données personnelles</div>
+    <h1>Politique de <span class="g">confidentialité</span></h1>
+    <p>Comment R Conciergerie collecte, utilise et protège vos données personnelles</p>
+  </div>
+
+  <!-- 1. Responsable du traitement -->
+  <div class="section-block">
+    <h2><span class="ico">👤</span> Responsable du traitement</h2>
+    <p>Le responsable du traitement de vos données personnelles est :</p>
+    <ul>
+      <li><strong>R Conciergerie</strong> — auto-entrepreneur</li>
+      <li>Représentant : Vincent Roy</li>
+      <li>Siège social : 1B rue de Paris, 77220 Gretz-Armainvilliers, France</li>
+      <li>SIREN : 990 295 057</li>
+      <li>Contact : <a href="mailto:vroy.conciergerie@gmail.com" style="color:#5B2FD4;font-weight:600;">vroy.conciergerie@gmail.com</a></li>
+    </ul>
+  </div>
+
+  <!-- 2. Données collectées -->
+  <div class="section-block">
+    <h2><span class="ico">📋</span> Données collectées</h2>
+    <p>Dans le cadre de notre outil de checklist équipement, nous collectons les données suivantes lorsque vous souhaitez télécharger votre rapport PDF personnalisé :</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Donnée</th>
+          <th>Finalité</th>
+          <th>Base légale</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Prénom</strong></td>
+          <td>Personnalisation de la communication</td>
+          <td>Consentement (art. 6.1.a RGPD)</td>
+        </tr>
+        <tr>
+          <td><strong>Adresse email</strong></td>
+          <td>Envoi d'informations sur nos services et suivi commercial</td>
+          <td>Consentement (art. 6.1.a RGPD)</td>
+        </tr>
+        <tr>
+          <td><strong>Informations logement</strong> (type, capacité, catégorie)</td>
+          <td>Personnalisation de nos conseils et propositions commerciales</td>
+          <td>Consentement (art. 6.1.a RGPD)</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:14px;font-size:.83rem;color:var(--muted);">Aucune donnée sensible (santé, origines, opinions politiques…) n'est collectée. Aucune donnée n'est collectée auprès de mineurs de moins de 16 ans.</p>
+  </div>
+
+  <!-- 3. Utilisation des données -->
+  <div class="section-block">
+    <h2><span class="ico">🎯</span> Utilisation de vos données</h2>
+    <p>Vos données sont utilisées exclusivement pour :</p>
+    <ul>
+      <li>Vous adresser des informations et conseils sur la location courte durée</li>
+      <li>Vous contacter afin de vous proposer nos services de conciergerie</li>
+      <li>Améliorer nos outils et contenus à destination des propriétaires</li>
+    </ul>
+    <p style="margin-top:12px;">Vos données ne sont <strong>jamais vendues</strong>, louées ou transmises à des tiers à des fins publicitaires.</p>
+  </div>
+
+  <!-- 4. Durée de conservation -->
+  <div class="section-block">
+    <h2><span class="ico">⏱</span> Durée de conservation</h2>
+    <p>Vos données personnelles sont conservées pendant une durée maximale de <strong>3 ans</strong> à compter du dernier contact. Au-delà de ce délai, elles sont supprimées automatiquement.</p>
+    <p>Vous pouvez demander la suppression de vos données à tout moment (voir section "Vos droits").</p>
+  </div>
+
+  <!-- 5. Hébergement & sous-traitants -->
+  <div class="section-block">
+    <h2><span class="ico">🌐</span> Hébergement &amp; prestataires techniques</h2>
+    <p>Ce site est hébergé par <strong>Netlify, Inc.</strong> (2325 3rd Street, Suite 215, San Francisco, CA 94107, États-Unis). Netlify est soumis au cadre UE–États-Unis relatif à la protection des données (Data Privacy Framework), garantissant un niveau de protection adéquat conformément au RGPD.</p>
+    <p>Les soumissions de formulaires sont traitées et stockées par Netlify Forms. Aucune autre plateforme tierce ne reçoit vos données à ce stade. En cas d'évolution (intégration d'un outil d'emailing tel que Brevo), cette politique sera mise à jour en conséquence.</p>
+  </div>
+
+  <!-- 6. Vos droits -->
+  <div class="section-block">
+    <h2><span class="ico">✅</span> Vos droits (RGPD)</h2>
+    <p>Conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679), vous disposez des droits suivants :</p>
+    <ul>
+      <li><strong>Droit d'accès</strong> — connaître les données que nous détenons sur vous</li>
+      <li><strong>Droit de rectification</strong> — corriger des données inexactes</li>
+      <li><strong>Droit à l'effacement</strong> ("droit à l'oubli") — demander la suppression de vos données</li>
+      <li><strong>Droit d'opposition</strong> — vous opposer à l'utilisation de vos données à des fins de prospection</li>
+      <li><strong>Droit à la limitation</strong> — restreindre temporairement le traitement de vos données</li>
+      <li><strong>Droit à la portabilité</strong> — recevoir vos données dans un format structuré et lisible</li>
+    </ul>
+    <div class="contact-block" style="margin-top:16px;">
+      <div class="contact-block-icon">✉️</div>
+      <p>Pour exercer l'un de ces droits, contactez-nous par email à <a href="mailto:vroy.conciergerie@gmail.com">vroy.conciergerie@gmail.com</a>. Nous nous engageons à répondre dans un délai d'<strong>un mois</strong> maximum, conformément au RGPD.</p>
+    </div>
+  </div>
+
+  <!-- 7. Cookies -->
+  <div class="section-block">
+    <h2><span class="ico">🍪</span> Cookies &amp; analytics</h2>
+    <p>Ce site utilise <strong>GoatCounter</strong>, un outil d'analyse d'audience respectueux de la vie privée. GoatCounter ne dépose <strong>aucun cookie</strong> dans votre navigateur et ne collecte aucune donnée personnelle identifiable. Seules des données agrégées et anonymisées (pages visitées, pays, navigateur) sont enregistrées.</p>
+    <p>Aucun cookie publicitaire ou de tracking tiers n'est utilisé sur ce site.</p>
+  </div>
+
+  <!-- 8. Réclamation CNIL -->
+  <div class="section-block">
+    <h2><span class="ico">⚖️</span> Réclamation auprès de la CNIL</h2>
+    <p>Si vous estimez que le traitement de vos données n'est pas conforme à la réglementation, vous avez le droit d'introduire une réclamation auprès de la <strong>Commission Nationale de l'Informatique et des Libertés (CNIL)</strong> :</p>
+    <ul>
+      <li>Site web : <a href="https://www.cnil.fr" target="_blank" rel="noopener" style="color:#5B2FD4;font-weight:600;">www.cnil.fr</a></li>
+      <li>Adresse : 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07</li>
+    </ul>
+  </div>
+
+  <div class="update-note">
+    Politique de confidentialité mise à jour le <strong>25 mars 2026</strong>.<br>
+    Toute modification sera publiée sur cette page avec la date de mise à jour.
+  </div>
+
+</div>
+
+<footer>
+  <a href="index.html">Accueil</a> &nbsp;·&nbsp;
+  <a href="checklist-equipement.html">Checklist équipement</a> &nbsp;·&nbsp;
+  <strong>Politique de confidentialité</strong>
+  &nbsp;·&nbsp; © 2026 R Conciergerie
+</footer>
+
+</body>
+</html>
