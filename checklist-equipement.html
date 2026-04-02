@@ -277,6 +277,21 @@ body{padding-top:80px;}
 .st-badge.st-buy{background:var(--soft-p);border-color:rgba(91,47,212,.3);color:var(--purple);}
 .st-badge.st-na{background:rgba(13,13,18,.04);border-color:rgba(13,13,18,.12);color:var(--muted);}
 
+/* PASTILLES TUTORIEL (J'ai / À acheter / Non) */
+.tip-states{display:flex;gap:7px;font-size:12px;}
+.tip-pill{
+  display:flex;align-items:center;justify-content:center;
+  gap:5px;padding:6px 10px;flex:1;
+  border-radius:999px;font-weight:600;text-align:center;
+}
+.tip-have{background:rgba(10,143,130,.1);border:1.5px solid rgba(10,143,130,.3);color:var(--teal);}
+.tip-buy{background:var(--soft-p2);border:1.5px solid rgba(91,47,212,.3);color:var(--purple);}
+.tip-no{background:rgba(13,13,18,.04);border:1.5px solid rgba(13,13,18,.12);color:var(--muted);}
+@media(max-width:520px){
+  .tip-states{flex-direction:column;gap:6px;}
+  .tip-pill{justify-content:flex-start;padding:8px 14px;}
+}
+
 /* ACCORDÉONS */
 .accord{margin-bottom:12px;border-radius:20px;overflow:hidden;border:1.5px solid var(--border);background:var(--card);box-shadow:0 4px 16px rgba(0,0,0,.04);}
 .accord-head{
@@ -352,6 +367,18 @@ body{padding-top:80px;}
 /* Alerte interdit */
 .item-card.lv-int-card{background:rgba(208,0,60,.04);border-color:rgba(208,0,60,.14);cursor:default;}
 .item-card.lv-int-card:hover{border-color:rgba(208,0,60,.2);}
+
+/* ITEMS CHECKLIST — RESPONSIVE MOBILE */
+@media(max-width:520px){
+  .item-card{flex-wrap:wrap;align-items:flex-start;gap:8px;padding:12px 14px;}
+  .item-info{flex:1;min-width:0;}
+  .item-badge{align-self:flex-start;margin-top:2px;}
+  .item-actions{flex-basis:100%;padding-left:20px;gap:5px;}
+  .btn-state{padding:5px 8px;font-size:11px;gap:3px;}
+  .accord-head{padding:14px 16px;}
+  .accord-body{padding:12px 14px;}
+  .card-grid{justify-content:center;}
+}
 
 /* SECTION ALERTE (items interdits) */
 .alert-row{
@@ -512,13 +539,23 @@ body{padding-top:80px;}
   .nav-links.nav-open a:last-child{border-bottom:none;}
 }
 @media(max-width:600px){
-  .nav{padding:10px 14px;gap:12px;}
+  .nav{padding:10px 14px;gap:10px;}
   .sn-lbl{display:none;}
+  .nav-score-label{display:none;}
+  .nav-score{padding:5px 10px;gap:5px;}
+  .nav-score-val{font-size:13px;}
   .p1-wrap,.p2-wrap,.p3-wrap{padding-left:16px;padding-right:16px;}
   .cnt-row{flex-wrap:wrap;}
   .capa-card{flex:100%;}
   .inline-row{flex-direction:column;}
   .export-row{flex-direction:column;}
+}
+@media(max-width:400px){
+  .nav{gap:7px;}
+  .nav-logo span{font-size:0.82rem;}
+  .nav-logo-img{height:1.9rem;}
+  .sn-dot{width:20px;height:20px;font-size:10px;}
+  .sn-line{width:12px;margin:0 2px;}
 }
 
 /* ── MODAL CAPTURE EMAIL ── */
@@ -1163,10 +1200,10 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var n,r,i,a,
   <div style="padding:14px 18px;background:var(--soft-p);border:1.5px solid rgba(91,47,212,.2);border-radius:14px;margin-bottom:16px;">
     <div style="font-size:13.5px;font-weight:700;color:var(--purple);margin-bottom:8px;">🛒 Comment utiliser la checklist</div>
     <p style="font-size:13px;color:var(--fg);line-height:1.7;margin-bottom:10px;">Cliquez sur une catégorie pour la dérouler et voir les articles.<br>Chaque article est pré-sélectionné sur <strong>À acheter</strong>. Ajustez selon votre situation :</p>
-    <div style="display:flex;gap:7px;font-size:12px;">
-      <span style="display:flex;align-items:center;justify-content:center;gap:5px;padding:6px 10px;flex:1;background:rgba(10,143,130,.1);border:1.5px solid rgba(10,143,130,.3);border-radius:999px;font-weight:600;color:var(--teal);text-align:center;">✓ J'ai <span style="font-weight:400;color:var(--muted);">— vous le possédez déjà</span></span>
-      <span style="display:flex;align-items:center;justify-content:center;gap:5px;padding:6px 10px;flex:1;background:var(--soft-p2);border:1.5px solid rgba(91,47,212,.3);border-radius:999px;font-weight:600;color:var(--purple);text-align:center;">🛒 À acheter <span style="font-weight:400;color:var(--muted);">— restera dans votre liste</span></span>
-      <span style="display:flex;align-items:center;justify-content:center;gap:5px;padding:6px 10px;flex:1;background:rgba(13,13,18,.04);border:1.5px solid rgba(13,13,18,.12);border-radius:999px;font-weight:600;color:var(--muted);text-align:center;">✕ Non <span style="font-weight:400;">— exclu de votre liste</span></span>
+    <div class="tip-states">
+      <span class="tip-pill tip-have">✓ J'ai <span style="font-weight:400;color:var(--muted);">— vous le possédez déjà</span></span>
+      <span class="tip-pill tip-buy">🛒 À acheter <span style="font-weight:400;color:var(--muted);">— restera dans votre liste</span></span>
+      <span class="tip-pill tip-no">✕ Non <span style="font-weight:400;">— exclu de votre liste</span></span>
     </div>
   </div>
 

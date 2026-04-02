@@ -736,6 +736,7 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
   .service-pill{width:100%;justify-content:flex-start;}
   .photo-grid img,.photo-grid img:first-child{height:260px;}
   .roy-block{grid-template-columns:1fr;padding:36px 24px;}
+  .section{padding:60px 16px;}
   .graph-section{padding:48px 16px;}
   .graph-wrap{padding:28px 18px;border-radius:24px;}
   .graph-header{flex-direction:column;gap:16px;margin-bottom:24px;}
@@ -1034,10 +1035,10 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
   </div>
   <!-- Grille LCD -->
   <div id="solution-grid-lcd" class="pain-grid">
-    <div class="pain-card p"><div class="pain-icon">🧹</div><h3>Ménage annulé de dernière minute</h3><p>Le prestataire a un empêchement de dernière minute et vous prévient 2h avant l'arrivée. Vous courez gérer l'urgence vous-même.</p></div>
+    <div class="pain-card p"><div class="pain-icon">🧹</div><h3>Ménage annulé à la dernière minute</h3><p>Le prestataire a un empêchement de dernière minute et vous prévient 2h avant l'arrivée. Vous courez gérer l'urgence vous-même.</p></div>
     <div class="pain-card p"><div class="pain-icon">✈️</div><h3>Calendrier fermé pendant vos vacances</h3><p>Sans organisation derrière vous, partir vous oblige à fermer votre calendrier de réservations. Des semaines de revenus envolées.</p></div>
     <div class="pain-card p"><div class="pain-icon">📱</div><h3>Messages au mauvais moment</h3><p>La serrure bloque ou Internet ne fonctionne plus. Votre moment en famille est interrompu encore une fois.</p></div>
-    <div class="pain-card p"><div class="pain-icon">🧴</div><h3>Consommables épuisés</h3><p>Un voyageur arrive et il manque du savon ou du papier. Un séjour moins agréable pour lui et un avis négatif pour un détail évitable.</p></div>
+    <div class="pain-card p"><div class="pain-icon">🧴</div><h3>Consommables épuisés</h3><p>Un voyageur arrive et il manque du savon ou du papier WC. Un séjour moins agréable pour lui et un avis négatif pour un détail évitable.</p></div>
     <div class="pain-card p"><div class="pain-icon">📉</div><h3>Prix mal calibrés</h3><p>Sans ajustement dynamique, vous perdez des revenus en période forte et ne remplissez pas suffisamment en période creuse.</p></div>
     <div class="pain-card p"><div class="pain-icon">⭐</div><h3>Expérience voyageur incomplète</h3><p>Sans guide d'accès et d'accueil interactif, l'expérience voyageur reste moyenne malgré votre logement.</p></div>
   </div>
@@ -1151,7 +1152,7 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
           <div class="stat-sub">non optimisée</div>
         </div>
         <div class="stat-col stat-col--last">
-          <div class="stat-amt stat-amt--green">1 600 €+<span class="stat-unit">/mois</span></div>
+          <div class="stat-amt stat-amt--green">1 600 €<span class="stat-unit">/mois</span></div>
           <div class="stat-sep stat-sep--green"></div>
           <div class="stat-lbl">R Conciergerie</div>
           <div class="stat-sub">plein régime ✦</div>
@@ -1286,7 +1287,8 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
   <form name="contact" method="POST" data-netlify="true" class="cta-form" id="contactForm">
     <input type="hidden" name="form-name" value="contact">
     <input type="text" name="prenom" placeholder="Votre prénom" required autocomplete="given-name">
-    <input type="tel" name="telephone" placeholder="Votre numéro de téléphone" required autocomplete="tel">
+    <input type="email" name="email" placeholder="Votre adresse email" required autocomplete="email">
+    <input type="tel" name="telephone" placeholder="Votre numéro de téléphone (optionnel)" autocomplete="tel">
     <textarea name="message" placeholder="Ex : j'ai un T2 à Ozoir-la-Ferrière, actuellement sur Airbnb..." required></textarea>
     <label class="cta-rgpd">
       <input type="checkbox" name="rgpd" required>
