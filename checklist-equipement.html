@@ -545,7 +545,8 @@ body{padding-top:80px;}
   .nav-score-label{display:none;}
   .nav-score{padding:5px 10px;gap:5px;}
   .nav-score-val{font-size:13px;}
-  .p1-wrap,.p2-wrap,.p3-wrap{padding-left:16px;padding-right:16px;}
+  .p1-wrap,.p2-wrap{padding-left:16px;padding-right:16px;}
+  .p3-wrap{padding-left:20px;padding-right:20px;padding-top:24px;}
   .cnt-row{flex-wrap:wrap;}
   .capa-card{flex:100%;}
   .inline-row{flex-direction:column;}
@@ -1035,9 +1036,9 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var n,r,i,a,
 
   <!-- Type + Gamme -->
   <div class="inline-row" style="align-items:stretch;gap:0;">
-    <div class="sec" id="sec-type" style="flex:2;min-width:200px;padding-right:20px;">
+    <div class="sec" id="sec-type" style="flex:2;min-width:200px;padding-right:20px;display:flex;flex-direction:column;">
       <div class="sec-label">Type de logement</div>
-      <div class="card-grid" id="grp-type">
+      <div class="card-grid" id="grp-type" style="flex:1;align-items:stretch;">
         <div class="c-card sel-t" data-group="grp-type" data-val="appartement" onclick="selCard(this)">
           <span class="ci">🏢</span><span class="ct">Appartement</span>
         </div>
@@ -2260,7 +2261,7 @@ function exportPDF() {
 function copyList() {
   let lines = [`📋 Liste d'achats — R Conciergerie\n`];
   const lvOrder = {obl:0, pre:1, std:2, int:3};
-  const lvLabel = {obl:'🔴 OBLIGATOIRE', pre:'🟠 PRÉCONISÉ', std:'🟡 STANDARD'};
+  const lvLabel = {obl:'🔵 OBLIGATOIRE', pre:'🟣 PRÉCONISÉ', std:'🟢 STANDARD'};
   const bySection = {};
   SECTIONS.forEach(sec => {
     sec.items.filter(isVisible).forEach(item => {
