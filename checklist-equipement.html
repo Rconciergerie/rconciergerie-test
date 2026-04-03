@@ -546,27 +546,7 @@ body{padding-top:80px;}
   .nav-score{padding:5px 10px;gap:5px;}
   .nav-score-val{font-size:13px;}
   .p1-wrap,.p2-wrap{padding-left:16px;padding-right:16px;}
-  .p3-wrap{
-    width:100%;
-    max-width:100%;
-    padding:24px 16px 100px;
-    overflow-x:clip;
-  }
-  #page3{overflow-x:hidden;}
-  #page3 .p2-header,
-  #page3 .results-top-row,
-  #page3 .breakdown-grid,
-  #page3 .export-row,
-  #page3 #r-buy-list,
-  #page3 .buy-section,
-  #page3 .buy-list,
-  #page3 .buy-item,
-  #page3 .score-hero,
-  #page3 .cta-card{
-    width:100%;
-    max-width:100%;
-    min-width:0;
-  }
+  .p3-wrap{padding-left:20px;padding-right:20px;padding-top:24px;overflow-x:hidden;}
   .cnt-row{flex-wrap:wrap;}
   .capa-card{flex:100%;}
   .inline-row{flex-direction:column;}
@@ -646,6 +626,14 @@ body{padding-top:80px;}
 .email-submit:disabled{opacity:.6;cursor:not-allowed;transform:none;}
 .email-modal-note{font-size:.7rem;color:var(--muted);text-align:center;margin-top:12px;line-height:1.5;}
 @media(max-width:480px){.email-modal-box{padding:28px 20px;border-radius:16px;}}
+
+/* ── iOS Safari : empêche l'auto-zoom au focus des champs email/prénom ── */
+@media(max-width:600px){
+  .email-field input,
+  .email-submit{
+    font-size:16px;
+  }
+}
 </style>
 <script>
 /** @license
