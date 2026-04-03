@@ -546,11 +546,20 @@ body{padding-top:80px;}
   .nav-score{padding:5px 10px;gap:5px;}
   .nav-score-val{font-size:13px;}
   .p1-wrap,.p2-wrap{padding-left:16px;padding-right:16px;}
-  .p3-wrap{padding-left:20px;padding-right:20px;padding-top:24px;}
+  .p3-wrap{padding-left:20px;padding-right:20px;padding-top:24px;overflow-x:hidden;}
   .cnt-row{flex-wrap:wrap;}
   .capa-card{flex:100%;}
   .inline-row{flex-direction:column;}
   .export-row{flex-direction:column;}
+  /* Éviter le débordement horizontal sur page résultats */
+  .score-hero{padding:24px 18px 20px;}
+  .cta-card{padding:24px 18px 20px;}
+  .buy-badge{display:flex;flex-wrap:wrap;justify-content:center;text-align:center;line-height:1.6;}
+  .score-msg{max-width:100%;}
+  .breakdown-grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr));}
+  .buy-item{flex-wrap:wrap;}
+  .buy-name{word-break:break-word;overflow-wrap:anywhere;min-width:0;}
+  .results-top-row{gap:12px;}
 }
 @media(max-width:400px){
   .nav{gap:7px;}
