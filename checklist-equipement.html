@@ -160,7 +160,7 @@ body{padding-top:80px;}
 .inline-row .sec{margin-bottom:0;}
 
 /* CARTES SÉLECTIONNABLES */
-.card-grid{display:flex;flex-wrap:wrap;gap:10px;width:100%;}
+.card-grid{display:flex;flex-wrap:wrap;gap:10px;width:100%;align-items:stretch;}
 .c-card{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:6px;padding:14px 20px;min-width:90px;flex:1;
@@ -539,6 +539,7 @@ body{padding-top:80px;}
   .nav-links.nav-open a:last-child{border-bottom:none;}
 }
 @media(max-width:600px){
+  .nav-logo{display:none;}
   .nav{padding:10px 14px;gap:10px;}
   .sn-lbl{display:none;}
   .nav-score-label{display:none;}
@@ -552,10 +553,14 @@ body{padding-top:80px;}
 }
 @media(max-width:400px){
   .nav{gap:7px;}
-  .nav-logo span{font-size:0.82rem;}
-  .nav-logo-img{height:1.9rem;}
   .sn-dot{width:20px;height:20px;font-size:10px;}
   .sn-line{width:12px;margin:0 2px;}
+}
+@media(max-width:600px){
+  #sec-type{padding-right:0 !important;min-width:0 !important;}
+  #sec-gamme{padding-left:0 !important;min-width:0 !important;}
+  #type-gamme-sep{display:none;}
+  #grp-gamme .c-card{min-width:0;}
 }
 
 /* ── MODAL CAPTURE EMAIL ── */
@@ -1030,7 +1035,7 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var n,r,i,a,
 
   <!-- Type + Gamme -->
   <div class="inline-row" style="align-items:stretch;gap:0;">
-    <div class="sec" style="flex:2;min-width:200px;padding-right:20px;">
+    <div class="sec" id="sec-type" style="flex:2;min-width:200px;padding-right:20px;">
       <div class="sec-label">Type de logement</div>
       <div class="card-grid" id="grp-type">
         <div class="c-card sel-t" data-group="grp-type" data-val="appartement" onclick="selCard(this)">
@@ -1045,8 +1050,8 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var n,r,i,a,
       </div>
     </div>
     <!-- Séparateur vertical -->
-    <div style="width:1px;background:rgba(13,13,18,.12);margin:0 4px;flex-shrink:0;"></div>
-    <div class="sec" style="flex:1;min-width:120px;padding-left:20px;">
+    <div id="type-gamme-sep" style="width:1px;background:rgba(13,13,18,.12);margin:0 4px;flex-shrink:0;"></div>
+    <div class="sec" id="sec-gamme" style="flex:1;min-width:120px;padding-left:20px;">
       <div class="sec-label">Gamme</div>
       <div class="card-grid" id="grp-gamme" style="flex-direction:column;">
         <div class="c-card sel-t" data-group="grp-gamme" data-val="standard" onclick="selCard(this)" style="width:100%;"><span class="ct">Standard</span></div>
