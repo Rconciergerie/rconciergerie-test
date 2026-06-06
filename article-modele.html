@@ -7,18 +7,18 @@
 
   Ce fichier est le modèle réutilisable pour chaque article du blog.
   Make.com copie ce fichier et remplace les placeholders {{…}}
-  avant de le déployer sur Netlify sous /articles/[[SLUG]].html
+  avant de le déployer sur Netlify sous /articles/{{SLUG}}.html
 
   PLACEHOLDERS À REMPLACER PAR MAKE :
   ─────────────────────────────────────
-  [[META_TITLE]]        → Titre de la page (balise <title>) — 60-70 car.
-  [[META_DESCRIPTION]]  → Meta description — 140-160 car.
-  [[SLUG]]              → Slug URL sans accent ni majuscule (ex: taxe-sejour-airbnb)
-  [[DATE_ISO]]          → Date au format ISO 8601 (ex: 2026-05-20)
-  [[DATE_FR]]           → Date affichée en français (ex: 20 mai 2026)
-  [[THEME]]             → Catégorie de l'article (ex: Fiscalité, Optimisation…)
-  [[TITRE_H1]]          → Titre H1 de l'article — 60-70 car., mot-clé en début
-  [[CORPS_ARTICLE]]     → Corps complet de l'article en HTML :
+  {{META_TITLE}}        → Titre de la page (balise <title>) — 60-70 car.
+  {{META_DESCRIPTION}}  → Meta description — 140-160 car.
+  {{SLUG}}              → Slug URL sans accent ni majuscule (ex: taxe-sejour-airbnb)
+  {{DATE_ISO}}          → Date au format ISO 8601 (ex: 2026-05-20)
+  {{DATE_FR}}           → Date affichée en français (ex: 20 mai 2026)
+  {{THEME}}             → Catégorie de l'article (ex: Fiscalité, Optimisation…)
+  {{TITRE_H1}}          → Titre H1 de l'article — 60-70 car., mot-clé en début
+  {{CORPS_ARTICLE}}     → Corps complet de l'article en HTML :
                           structure attendue = <p>intro</p>
                           <h2>…</h2><p>…</p>
                           <h2>…</h2><p>…</p>
@@ -36,27 +36,27 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="R Conciergerie">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="[[META_DESCRIPTION]]">
+<meta name="description" content="{{META_DESCRIPTION}}">
 <meta name="author" content="Vincent Roy — R Conciergerie">
-<meta property="og:title" content="[[META_TITLE]]">
-<meta property="og:description" content="[[META_DESCRIPTION]]">
+<meta property="og:title" content="{{META_TITLE}}">
+<meta property="og:description" content="{{META_DESCRIPTION}}">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="fr_FR">
-<meta property="og:url" content="https://www.rconciergerie.fr/articles/[[SLUG]]">
+<meta property="og:url" content="https://www.rconciergerie.fr/articles/{{SLUG}}">
 <meta property="og:image" content="https://www.rconciergerie.fr/og-articles.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="[[META_TITLE]]">
-<meta name="twitter:description" content="[[META_DESCRIPTION]]">
-<title>[[META_TITLE]]</title>
-<link rel="canonical" href="https://www.rconciergerie.fr/articles/[[SLUG]]">
+<meta name="twitter:title" content="{{META_TITLE}}">
+<meta name="twitter:description" content="{{META_DESCRIPTION}}">
+<title>{{META_TITLE}}</title>
+<link rel="canonical" href="https://www.rconciergerie.fr/articles/{{SLUG}}">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "[[TITRE_H1]]",
-  "description": "[[META_DESCRIPTION]]",
-  "datePublished": "[[DATE_ISO]]",
-  "dateModified": "[[DATE_ISO]]",
+  "headline": "{{TITRE_H1}}",
+  "description": "{{META_DESCRIPTION}}",
+  "datePublished": "{{DATE_ISO}}",
+  "dateModified": "{{DATE_ISO}}",
   "author": {
     "@type": "Person",
     "name": "Vincent Roy"
@@ -68,7 +68,7 @@
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://www.rconciergerie.fr/articles/[[SLUG]]"
+    "@id": "https://www.rconciergerie.fr/articles/{{SLUG}}"
   }
 }
 </script>
@@ -308,6 +308,8 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
   <div class="nav-links">
     <a href="/">Accueil</a>
     <a href="/#services">Notre offre</a>
+    <a href="/#checklist">Checklist équipement</a>
+    <a href="/#histoire">Notre histoire</a>
     <a href="/articles.html" class="nav-active">Articles</a>
     <a href="/#avis">Avis</a>
   </div>
@@ -322,11 +324,11 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
   <div class="article-breadcrumb" aria-label="Fil d'Ariane">
     <a href="/articles.html">Articles</a>
     <span class="article-breadcrumb-sep">›</span>
-    <span>[[THEME]]</span>
+    <span>{{THEME}}</span>
   </div>
-  <h1>[[TITRE_H1]]</h1>
+  <h1>{{TITRE_H1}}</h1>
   <div class="article-meta">
-    <span class="article-meta-item">📅 [[DATE_FR]]</span>
+    <span class="article-meta-item">📅 {{DATE_FR}}</span>
     <span class="article-meta-item">✍️ R Conciergerie</span>
     <span class="article-meta-item">📍 Seine-et-Marne (77)</span>
   </div>
@@ -335,10 +337,10 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
 <div class="article-divider"></div>
 
 <!-- CORPS DE L'ARTICLE -->
-<!-- Make remplace [[CORPS_ARTICLE]] par le HTML généré par Claude via API -->
+<!-- Make remplace {{CORPS_ARTICLE}} par le HTML généré par Claude via API -->
 <!-- Structure attendue : <p>Intro…</p><h2>…</h2><p>…</p><h2>…</h2><p>…</p> etc. -->
 <article class="article-body">
-[[CORPS_ARTICLE]]
+{{CORPS_ARTICLE}}
 </article>
 
 <!-- CTA INTERNE — lien vers rconciergerie.fr (fixe, ne change pas) -->
