@@ -320,7 +320,7 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
     })
     .then(function(data) {
       loading.style.display = 'none';
-      var articles = data.articles || [];
+      var articles = Array.isArray(data) ? data : (data.articles || []);
 
       if (articles.length === 0) {
         empty.style.display = 'block';
