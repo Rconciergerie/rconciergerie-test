@@ -1,0 +1,127 @@
+name: Publier un article
+
+on:
+  repository_dispatch:
+    types: [publish-article]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Construire l'article HTML et mettre à jour articles.json
+        env:
+          SLUG: ${{ github.event.client_payload.slug }}
+          CORPS_ARTICLE: ${{ toJson(github.event.client_payload.corps_article) }}
+          META_TITLE: ${{ toJson(github.event.client_payload.meta_title) }}
+          META_DESCRIPTION: ${{ toJson(github.event.client_payload.meta_description) }}
+          DATE_ISO: ${{ github.event.client_payload.date_iso }}
+          TITRE_H1: ${{ toJson(github.event.client_payload.titre_h1) }}
+          THEME: ${{ toJson(github.event.client_payload.theme) }}
+        run: |
+          python3 << 'EOF'
+          import os, json
+
+          slug         = os.environ.get("SLUG", "").strip()
+          corps        = json.loads(os.environ.get("CORPS_ARTICLE", '""'))
+          meta_title   = json.loads(os.environ.get("META_TITLE", '""'))
+          meta_desc    = json.loads(os.environ.get("META_DESCRIPTION", '""'))
+          date_iso     = os.environ.get("DATE_ISO", "").strip()
+          titre_h1     = json.loads(os.environ.get("TITRE_H1", '""'))
+          theme        = json.loads(os.environ.get("THEME", '""'))
+
+          if not slug:
+              print("ERREUR : slug manquant")
+              exit(1)
+
+          # Convertir date ISO (2026-06-11) → français (11 juin 2026)
+          MOIS = {
+              "01": "janvier",  "02": "février",   "03": "mars",
+              "04": "avril",    "05": "mai",        "06": "juin",
+              "07": "juillet",  "08": "août",       "09": "septembre",
+              "10": "octobre",  "11": "novembre",   "12": "décembre"
+          }
+          try:
+              parts = date_iso.split("-")
+              date_fr = f"{int(parts[2])} {MOIS.get(parts[1], parts[1])} {parts[0]}"
+          except Exception:
+              date_fr = date_iso
+
+          # Si titre_h1 vide, utiliser meta_title
+          if not titre_h1:
+              titre_h1 = meta_title
+
+          # Lire le template officiel
+          with open("article-modele.html", "r", encoding="utf-8") as f:
+              template = f.read()
+
+          # Remplacer les 8 placeholders
+          html = template
+          html = html.replace("{{META_TITLE}}",       meta_title)
+          html = html.replace("{{META_DESCRIPTION}}", meta_desc)
+          html = html.replace("{{SLUG}}",             slug)
+          html = html.replace("{{DATE_ISO}}",         date_iso)
+          html = html.replace("{{DATE_FR}}",          date_fr)
+          html = html.replace("{{TITRE_H1}}",         titre_h1)
+          html = html.replace("{{THEME}}",            theme)
+          html = html.replace("{{CORPS_ARTICLE}}",    corps)
+
+          # Écrire articles/{slug}.html
+          os.makedirs("articles", exist_ok=True)
+          out_path = f"articles/{slug}.html"
+          with open(out_path, "w", encoding="utf-8") as f:
+              f.write(html)
+          print(f"✅ Article écrit : {out_path}")
+
+          # Mettre à jour articles.json
+          json_path = "articles.json"
+          try:
+              with open(json_path, "r", encoding="utf-8") as f:
+                  articles = json.load(f)
+          except Exception:
+              articles = []
+
+          # Mettre à jour si le slug existe, sinon ajouter
+          exists = False
+          for a in articles:
+              if a.get("slug") == slug:
+                  a["titre"] = meta_title
+                  a["description"] = meta_desc
+                  a["date"] = date_iso
+                  a["theme"] = theme
+                  a["url"] = f"https://rconciergerie.fr/articles/{slug}"
+                  exists = True
+                  print(f"✅ Article mis à jour dans articles.json : {slug}")
+                  break
+
+          if not exists:
+              articles.append({
+                  "slug":        slug,
+                  "titre":       meta_title,
+                  "description": meta_desc,
+                  "date":        date_iso,
+                  "theme":       theme,
+                  "url":         f"https://rconciergerie.fr/articles/{slug}"
+              })
+              print(f"✅ Article ajouté dans articles.json : {slug}")
+
+          # Trier par date décroissante (plus récent en premier)
+          articles.sort(key=lambda x: x.get("date", ""), reverse=True)
+
+          with open(json_path, "w", encoding="utf-8") as f:
+              json.dump(articles, f, ensure_ascii=False, indent=2)
+          print("✅ articles.json mis à jour")
+          EOF
+
+      - name: Commit et push
+        run: |
+          git config user.name "R Conciergerie Bot"
+          git config user.email "vroy.conciergerie@gmail.com"
+          git add "articles/${{ github.event.client_payload.slug }}.html" articles.json
+          git diff --staged --quiet && echo "Rien à commiter" || git commit -m "Article: ${{ github.event.client_payload.slug }}"
+          git push
