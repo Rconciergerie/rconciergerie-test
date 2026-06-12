@@ -4,6 +4,9 @@ on:
   repository_dispatch:
     types: [publish-article]
 
+permissions:
+  contents: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -24,7 +27,7 @@ jobs:
           TITRE_H1: ${{ toJson(github.event.client_payload.titre_h1) }}
           THEME: ${{ toJson(github.event.client_payload.theme) }}
         run: |
-          python3 << 'EOF'
+          python3 << 'PYEOF'
           import os, json
 
           slug         = os.environ.get("SLUG", "").strip()
@@ -39,12 +42,11 @@ jobs:
               print("ERREUR : slug manquant")
               exit(1)
 
-          # Convertir date ISO (2026-06-11) → français (11 juin 2026)
           MOIS = {
-              "01": "janvier",  "02": "février",   "03": "mars",
+              "01": "janvier",  "02": "fevrier",   "03": "mars",
               "04": "avril",    "05": "mai",        "06": "juin",
-              "07": "juillet",  "08": "août",       "09": "septembre",
-              "10": "octobre",  "11": "novembre",   "12": "décembre"
+              "07": "juillet",  "08": "aout",       "09": "septembre",
+              "10": "octobre",  "11": "novembre",   "12": "decembre"
           }
           try:
               parts = date_iso.split("-")
@@ -52,15 +54,12 @@ jobs:
           except Exception:
               date_fr = date_iso
 
-          # Si titre_h1 vide, utiliser meta_title
           if not titre_h1:
               titre_h1 = meta_title
 
-          # Lire le template officiel
           with open("article-modele.html", "r", encoding="utf-8") as f:
               template = f.read()
 
-          # Remplacer les 8 placeholders
           html = template
           html = html.replace("{{META_TITLE}}",       meta_title)
           html = html.replace("{{META_DESCRIPTION}}", meta_desc)
@@ -71,14 +70,12 @@ jobs:
           html = html.replace("{{THEME}}",            theme)
           html = html.replace("{{CORPS_ARTICLE}}",    corps)
 
-          # Écrire articles/{slug}.html
           os.makedirs("articles", exist_ok=True)
           out_path = f"articles/{slug}.html"
           with open(out_path, "w", encoding="utf-8") as f:
               f.write(html)
-          print(f"✅ Article écrit : {out_path}")
+          print(f"Article ecrit : {out_path}")
 
-          # Mettre à jour articles.json
           json_path = "articles.json"
           try:
               with open(json_path, "r", encoding="utf-8") as f:
@@ -86,7 +83,6 @@ jobs:
           except Exception:
               articles = []
 
-          # Mettre à jour si le slug existe, sinon ajouter
           exists = False
           for a in articles:
               if a.get("slug") == slug:
@@ -96,7 +92,7 @@ jobs:
                   a["theme"] = theme
                   a["url"] = f"https://rconciergerie.fr/articles/{slug}"
                   exists = True
-                  print(f"✅ Article mis à jour dans articles.json : {slug}")
+                  print(f"Article mis a jour : {slug}")
                   break
 
           if not exists:
@@ -108,20 +104,19 @@ jobs:
                   "theme":       theme,
                   "url":         f"https://rconciergerie.fr/articles/{slug}"
               })
-              print(f"✅ Article ajouté dans articles.json : {slug}")
+              print(f"Article ajoute : {slug}")
 
-          # Trier par date décroissante (plus récent en premier)
           articles.sort(key=lambda x: x.get("date", ""), reverse=True)
 
           with open(json_path, "w", encoding="utf-8") as f:
               json.dump(articles, f, ensure_ascii=False, indent=2)
-          print("✅ articles.json mis à jour")
-          EOF
+          print("articles.json mis a jour")
+          PYEOF
 
       - name: Commit et push
         run: |
           git config user.name "R Conciergerie Bot"
           git config user.email "vroy.conciergerie@gmail.com"
           git add "articles/${{ github.event.client_payload.slug }}.html" articles.json
-          git diff --staged --quiet && echo "Rien à commiter" || git commit -m "Article: ${{ github.event.client_payload.slug }}"
+          git diff --staged --quiet && echo "Rien a commiter" || git commit -m "Article: ${{ github.event.client_payload.slug }}"
           git push
