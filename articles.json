@@ -1,5 +1,13 @@
 [
   {
+    "slug": "test-github-actions-v2",
+    "titre": "Test GitHub Actions v2 - permissions fix",
+    "description": "Test de validation du workflow après ajout permissions contents write.",
+    "date": "2026-06-12",
+    "theme": "test technique",
+    "url": "https://rconciergerie.fr/articles/test-github-actions-v2"
+  },
+  {
     "slug": "vendre-logement-airbnb-convaincre-voyageurs",
     "titre": "Vendre votre logement Airbnb : l'art de convaincre vos voyageurs",
     "description": "Vendre votre logement Airbnb passe par votre annonce, vos messages et votre accueil. Découvrez comment convaincre vos voyageurs à chaque étape.",
