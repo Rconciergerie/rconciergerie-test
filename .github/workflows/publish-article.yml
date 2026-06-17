@@ -42,11 +42,12 @@ jobs:
               print("ERREUR : slug manquant")
               exit(1)
 
+          # Convertir date ISO (2026-06-11) → français (11 juin 2026)
           MOIS = {
-              "01": "janvier",  "02": "fevrier",   "03": "mars",
+              "01": "janvier",  "02": "février",   "03": "mars",
               "04": "avril",    "05": "mai",        "06": "juin",
-              "07": "juillet",  "08": "aout",       "09": "septembre",
-              "10": "octobre",  "11": "novembre",   "12": "decembre"
+              "07": "juillet",  "08": "août",       "09": "septembre",
+              "10": "octobre",  "11": "novembre",   "12": "décembre"
           }
           try:
               parts = date_iso.split("-")
@@ -54,12 +55,15 @@ jobs:
           except Exception:
               date_fr = date_iso
 
+          # Si titre_h1 vide, utiliser meta_title
           if not titre_h1:
               titre_h1 = meta_title
 
+          # Lire le template officiel
           with open("article-modele.html", "r", encoding="utf-8") as f:
               template = f.read()
 
+          # Remplacer les 8 placeholders
           html = template
           html = html.replace("{{META_TITLE}}",       meta_title)
           html = html.replace("{{META_DESCRIPTION}}", meta_desc)
@@ -70,12 +74,14 @@ jobs:
           html = html.replace("{{THEME}}",            theme)
           html = html.replace("{{CORPS_ARTICLE}}",    corps)
 
+          # Écrire articles/{slug}.html
           os.makedirs("articles", exist_ok=True)
           out_path = f"articles/{slug}.html"
           with open(out_path, "w", encoding="utf-8") as f:
               f.write(html)
-          print(f"Article ecrit : {out_path}")
+          print(f"✅ Article écrit : {out_path}")
 
+          # Mettre à jour articles.json
           json_path = "articles.json"
           try:
               with open(json_path, "r", encoding="utf-8") as f:
@@ -83,6 +89,7 @@ jobs:
           except Exception:
               articles = []
 
+          # Mettre à jour si le slug existe, sinon ajouter
           exists = False
           for a in articles:
               if a.get("slug") == slug:
@@ -92,7 +99,7 @@ jobs:
                   a["theme"] = theme
                   a["url"] = f"https://rconciergerie.fr/articles/{slug}"
                   exists = True
-                  print(f"Article mis a jour : {slug}")
+                  print(f"✅ Article mis à jour dans articles.json : {slug}")
                   break
 
           if not exists:
@@ -104,19 +111,52 @@ jobs:
                   "theme":       theme,
                   "url":         f"https://rconciergerie.fr/articles/{slug}"
               })
-              print(f"Article ajoute : {slug}")
+              print(f"✅ Article ajouté dans articles.json : {slug}")
 
+          # Trier par date décroissante (plus récent en premier)
           articles.sort(key=lambda x: x.get("date", ""), reverse=True)
 
           with open(json_path, "w", encoding="utf-8") as f:
               json.dump(articles, f, ensure_ascii=False, indent=2)
-          print("articles.json mis a jour")
+          print("✅ articles.json mis à jour")
+
+          # Régénérer sitemap.xml : pages statiques + 1 entrée par article (depuis articles.json)
+          # Les articles utilisent l'URL canonique (sans .html), telle que stockée dans articles.json.
+          pages_statiques = [
+              ("https://rconciergerie.fr/",                       "weekly",  "1.0"),
+              ("https://rconciergerie.fr/articles",          "weekly",  "0.8"),
+              ("https://rconciergerie.fr/checklist-equipement", "monthly", "0.7"),
+              ("https://rconciergerie.fr/confidentialite",   "yearly",  "0.3"),
+          ]
+          lignes = ['<?xml version="1.0" encoding="UTF-8"?>',
+                    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+          for loc, cf, pr in pages_statiques:
+              lignes += ['  <url>',
+                         f'    <loc>{loc}</loc>',
+                         f'    <changefreq>{cf}</changefreq>',
+                         f'    <priority>{pr}</priority>',
+                         '  </url>']
+          for a in articles:
+              loc = a.get("url", "").strip()
+              if not loc:
+                  continue
+              d = a.get("date", "").strip()
+              lignes += ['  <url>', f'    <loc>{loc}</loc>']
+              if d:
+                  lignes += [f'    <lastmod>{d}</lastmod>']
+              lignes += ['    <changefreq>monthly</changefreq>',
+                         '    <priority>0.6</priority>',
+                         '  </url>']
+          lignes += ['</urlset>', '']
+          with open("sitemap.xml", "w", encoding="utf-8") as f:
+              f.write("\n".join(lignes))
+          print(f"✅ sitemap.xml régénéré ({len(articles)} article(s) inclus)")
           PYEOF
 
       - name: Commit et push
         run: |
           git config user.name "R Conciergerie Bot"
           git config user.email "vroy.conciergerie@gmail.com"
-          git add "articles/${{ github.event.client_payload.slug }}.html" articles.json
-          git diff --staged --quiet && echo "Rien a commiter" || git commit -m "Article: ${{ github.event.client_payload.slug }}"
+          git add "articles/${{ github.event.client_payload.slug }}.html" articles.json sitemap.xml
+          git diff --staged --quiet && echo "Rien à commiter" || git commit -m "Article: ${{ github.event.client_payload.slug }}"
           git push
