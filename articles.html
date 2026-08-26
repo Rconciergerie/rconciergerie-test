@@ -322,18 +322,23 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
       loading.style.display = 'none';
       var articles = Array.isArray(data) ? data : (data.articles || []);
 
+      // Filet de securite : on ignore une entree incomplete au lieu de casser toute la liste
+      articles = articles.filter(function(a) { return a && a.slug; });
+
       if (articles.length === 0) {
         empty.style.display = 'block';
         return;
       }
 
-      // Trier du plus récent au plus ancien
-      articles.sort(function(a, b) { return b.date.localeCompare(a.date); });
+      // Trier du plus récent au plus ancien (une date manquante ne fait plus planter le tri)
+      articles.sort(function(a, b) {
+        return String(b && b.date || '').localeCompare(String(a && a.date || ''));
+      });
 
       grid.innerHTML = articles.map(function(a) {
         return '<a href="/articles/' + a.slug + '.html" class="article-card">'
           + '<span class="article-theme">' + escHtml(a.theme || 'Article') + '</span>'
-          + '<h2>' + escHtml(a.titre) + '</h2>'
+          + '<h2>' + escHtml(a.titre || 'Article') + '</h2>'
           + '<p class="article-desc">' + escHtml(a.description) + '</p>'
           + '<div class="article-footer">'
           + '<span class="article-date">' + formatDate(a.date) + '</span>'
@@ -350,10 +355,12 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
     });
 
   function formatDate(str) {
+    if (!str) return '';
     try {
       var d = new Date(str);
+      if (isNaN(d.getTime())) return '';
       return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
-    } catch(e) { return str; }
+    } catch(e) { return ''; }
   }
 
   function escHtml(s) {
