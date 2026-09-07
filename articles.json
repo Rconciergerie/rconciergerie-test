@@ -1,5 +1,14 @@
 [
   {
+    "slug": "frais-de-menage-location-courte-duree",
+    "titre": "Frais de ménage : comment les fixer sans faire fuir les voyageurs",
+    "description": "Quel montant indiquer en frais de ménage sur Airbnb et Booking ? Partez du coût réel du ménage et ajoutez la commission que la plateforme prélève dessus.",
+    "date": "2026-09-07",
+    "theme": "Prix et saisonnalité",
+    "lecture": 3,
+    "url": "https://rconciergerie.fr/articles/frais-de-menage-location-courte-duree"
+  },
+  {
     "slug": "temps-location-courte-duree-chaque-semaine",
     "titre": "Combien de temps demande vraiment une location courte durée chaque semaine ?",
     "description": "Combien de temps prend une location courte durée par semaine ? De 30 minutes à une heure par jour : ce qui fait basculer d'un extrême à l'autre.",
@@ -12,7 +21,7 @@
     "titre": "Faut-il baisser ses prix quand le calendrier se vide ?",
     "description": "Faut-il baisser ses prix quand le calendrier se vide ? En Île-de-France, septembre et octobre sont parmi les meilleurs mois. Ce qu'il vaut mieux faire du creux d'août.",
     "date": "2026-08-23",
-    "theme": "prix et saisonnalité en location courte durée",
+    "theme": "Prix et saisonnalité",
     "url": "https://rconciergerie.fr/articles/baisser-ses-prix-calendrier-vide"
   },
   {
@@ -20,7 +29,7 @@
     "titre": "Airbnb change sa commission : ce qu'il faut faire avant le 13 octobre",
     "description": "Airbnb passe au frais unique de 15,5 %. Ajustez vos tarifs avant le 13 octobre 2026 pour garder vos revenus : ce qui change et ce qu'il faut faire.",
     "date": "2026-08-18",
-    "theme": "changement de commission Airbnb frais unique 2026",
+    "theme": "Commissions",
     "url": "https://rconciergerie.fr/articles/airbnb-frais-unique-avant-13-octobre"
   },
   {
@@ -28,7 +37,7 @@
     "titre": "Avis négatif sur Airbnb ou Booking : que faire ?",
     "description": "Que faire face à un avis négatif sur Airbnb ou Booking ? Répondre d'abord, pour les futurs voyageurs, puis les 5 réflexes qui évitent le prochain.",
     "date": "2026-08-10",
-    "theme": "répondre à un avis négatif Airbnb et Booking",
+    "theme": "Avis voyageurs",
     "url": "https://rconciergerie.fr/articles/avis-negatif-airbnb-booking-que-faire"
   },
   {
@@ -36,7 +45,7 @@
     "titre": "Location courte durée : en avez-vous le droit ?",
     "description": "Avez-vous le droit de louer en courte durée ? Déclaration en mairie, clause de copropriété, limite des 120 jours : les vérifications à faire avant de vous lancer.",
     "date": "2026-08-02",
-    "theme": "droit de louer en location courte durée",
+    "theme": "Réglementation",
     "url": "https://rconciergerie.fr/articles/location-courte-duree-avez-vous-le-droit"
   },
   {
@@ -44,7 +53,7 @@
     "titre": "Comment éviter qu'une fête soit organisée dans votre location courte durée ?",
     "description": "Comment éviter une fête dans votre location courte durée ? Capteur de bruit, serrure connectée, assurance : les 3 outils que nous utilisons en Seine-et-Marne.",
     "date": "2026-07-27",
-    "theme": "prévenir les fêtes et nuisances en location courte durée",
+    "theme": "Règles du logement",
     "url": "https://rconciergerie.fr/articles/prevenir-fetes-location-courte-duree"
   },
   {
@@ -52,7 +61,7 @@
     "titre": "Livret d'accueil : tout ce qu'il doit contenir pour vos voyageurs",
     "description": "Que doit contenir un livret d'accueil Airbnb efficace ? Informations pratiques, bons plans locaux, consignes de départ : le guide complet pour vos voyageurs.",
     "date": "2026-07-09",
-    "theme": "composer un livret d'accueil complet pour voyageurs",
+    "theme": "Accueil voyageurs",
     "url": "https://rconciergerie.fr/articles/livret-accueil-airbnb-contenu-guide"
   },
   {
@@ -60,7 +69,7 @@
     "titre": "Réussir le check-in : donner le bon ton dès l'arrivée",
     "description": "Réussir le check-in en location courte durée, c'est poser les bases d'un avis 5 étoiles. Nos conseils concrets pour un accueil soigné, même à distance.",
     "date": "2026-06-25",
-    "theme": "organiser accueil voyageurs check-in location courte duree",
+    "theme": "Accueil voyageurs",
     "url": "https://rconciergerie.fr/articles/reussir-check-in-location-courte-duree"
   },
   {
@@ -68,7 +77,7 @@
     "titre": "Lancer son premier logement en courte durée : les étapes clés",
     "description": "Vous lancez votre premier logement en location courte durée ? Découvrez les étapes clés pour préparer votre bien, créer une annonce efficace et bien démarrer.",
     "date": "2026-06-22",
-    "theme": "étapes lancement premier logement location courte durée",
+    "theme": "Se lancer",
     "url": "https://rconciergerie.fr/articles/lancer-premier-logement-courte-duree-etapes"
   },
   {
@@ -76,7 +85,7 @@
     "titre": "Équipement du logement Airbnb : ce que les voyageurs attendent vraiment",
     "description": "Équipement logement Airbnb : découvrez ce que les voyageurs attendent vraiment pour obtenir de bons avis et maximiser vos réservations.",
     "date": "2026-06-15",
-    "theme": "équipement indispensable logement Airbnb voyageurs avis",
+    "theme": "Équipement",
     "url": "https://rconciergerie.fr/articles/equipement-logement-airbnb-voyageurs"
   },
   {
@@ -84,7 +93,7 @@
     "titre": "Vendre votre logement Airbnb : l'art de convaincre vos voyageurs",
     "description": "Vendre votre logement Airbnb passe par votre annonce, vos messages et votre accueil. Découvrez comment convaincre vos voyageurs à chaque étape.",
     "date": "2026-06-11",
-    "theme": "approche commerciale annonce accueil voyageurs Airbnb",
+    "theme": "Annonce et photos",
     "url": "https://rconciergerie.fr/articles/vendre-logement-airbnb-convaincre-voyageurs"
   },
   {
@@ -92,7 +101,7 @@
     "titre": "Formation Airbnb : comment progresser en tant que propriétaire hôte",
     "description": "Comment progresser en tant que propriétaire hôte Airbnb ? Découvrez les bonnes pratiques pour mieux accueillir vos voyageurs et améliorer vos avis.",
     "date": "2026-06-08",
-    "theme": "accueil voyageurs Airbnb progresser formation hôte",
+    "theme": "Métier d'hôte",
     "url": "https://rconciergerie.fr/articles/formation-proprietaire-airbnb-progresser-accueil"
   }
 ]
