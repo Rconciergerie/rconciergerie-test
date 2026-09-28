@@ -300,12 +300,13 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/brands.min.css">
 <style id="rc-v12-commun">
 /* Ajouts du 28/09/2026 : bouton WhatsApp flottant, réseaux sociaux, encadré de fin */
-.rc-wa{position:fixed;right:22px;bottom:22px;z-index:400;display:flex;align-items:center;gap:10px;text-decoration:none;}
-.rc-wa-bub{width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 10px 28px rgba(37,211,102,0.35);transition:transform .2s;}
+.rc-wa{position:fixed;top:17px;right:24px;z-index:400;display:flex;align-items:center;text-decoration:none;}
+.rc-wa-bub{width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:27px;box-shadow:0 8px 24px rgba(37,211,102,0.35);border:3px solid #fff;transition:transform .2s;}
 .rc-wa:hover .rc-wa-bub{transform:scale(1.06);}
-.rc-wa-lbl{background:#fff;color:#0D0D12;border:1px solid rgba(13,13,18,0.07);border-radius:50px;padding:9px 14px;font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:600;box-shadow:0 8px 20px rgba(0,0,0,0.08);opacity:0;transform:translateX(8px);transition:all .2s;pointer-events:none;}
+.rc-wa-lbl{position:absolute;top:60px;right:0;white-space:nowrap;background:#fff;color:#0D0D12;border:1px solid rgba(13,13,18,0.07);border-radius:50px;padding:8px 13px;font-family:'Outfit',sans-serif;font-size:0.8rem;font-weight:600;box-shadow:0 8px 20px rgba(0,0,0,0.08);opacity:0;transform:translateY(-4px);transition:all .2s;pointer-events:none;}
 .rc-wa:hover .rc-wa-lbl{opacity:1;transform:none;}
-@media(max-width:768px){.rc-wa{right:14px;bottom:calc(14px + env(safe-area-inset-bottom));}.rc-wa-bub{width:52px;height:52px;font-size:27px;}.rc-wa-lbl{display:none;}
+@media(max-width:1100px){.rc-wa{right:14px;}}
+@media(max-width:768px){.rc-wa{top:auto;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));}.rc-wa-lbl{display:none;}
  .rc-wa.rc-wa-haut{bottom:calc(84px + env(safe-area-inset-bottom));}}
 .rc-socials{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:0.8rem;color:rgba(13,13,18,0.45);font-weight:600;}
 .rc-socials a{width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(13,13,18,0.07);display:flex;align-items:center;justify-content:center;color:#0D0D12;font-size:17px;text-decoration:none;background:#fff;transition:all .2s;}
@@ -314,7 +315,7 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
 .rc-socials.rc-sombre a{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.18);color:#fff;}
 .rc-band-wrap{max-width:900px;margin:0 auto;padding:40px 24px 80px;}
 .rc-band{display:grid;grid-template-columns:1.1fr 1fr;background:#fff;border:1.5px solid rgba(91,47,212,0.15);border-radius:28px;overflow:hidden;box-shadow:0 24px 50px rgba(91,47,212,0.08);}
-.rc-band-l{padding:36px 34px;background:linear-gradient(135deg,rgba(91,47,212,.06),rgba(10,143,130,.06));}
+.rc-band-l{padding:36px 34px;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,rgba(91,47,212,.06),rgba(10,143,130,.06));}
 .rc-band-l h2{font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;line-height:1.2;margin:0;color:#0D0D12;}
 .rc-band-l p{color:rgba(13,13,18,0.55);font-size:0.9rem;margin:10px 0 0;line-height:1.6;}
 .rc-band-btn{display:inline-flex;align-items:center;gap:8px;margin-top:22px;padding:15px 26px;border-radius:14px;background:linear-gradient(135deg,#5B2FD4 0%,#0A8F82 100%);color:#fff;font-weight:700;font-size:0.95rem;text-decoration:none;box-shadow:0 8px 28px rgba(91,47,212,0.28);transition:opacity .2s,transform .2s;}
@@ -423,5 +424,14 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
 </script>
 
 <a class="rc-wa" href="https://wa.me/33629883919?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20votre%20conciergerie." target="_blank" rel="noopener" aria-label="Nous écrire sur WhatsApp"><span class="rc-wa-lbl">Une question ? Écrivez-nous</span><span class="rc-wa-bub"><i class="fa-brands fa-whatsapp"></i></span></a>
+<script>
+/* Pastille WhatsApp : collée à droite du menu sur ordinateur, s'il y a la place */
+(function(){var w=document.querySelector('.rc-wa'),n=document.querySelector('nav');if(!w||!n)return;
+function place(){if(window.innerWidth<=768){w.style.left='';w.style.right='';return;}
+var r=n.getBoundingClientRect(),x=r.right+12;
+if(x+52<=window.innerWidth-8){w.style.left=x+'px';w.style.right='auto';w.style.top=(r.top+(r.height-52)/2)+'px';}
+else{w.style.left='';w.style.right='';w.style.top='';}}
+place();window.addEventListener('resize',place);window.addEventListener('load',place);})();
+</script>
 </body>
 </html>
