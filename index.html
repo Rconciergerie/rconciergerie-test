@@ -1287,6 +1287,37 @@ i.cmp-ic{
   history.scrollRestoration = 'manual';
   window.addEventListener('pageshow', function(){ window.scrollTo({ top: 0, behavior: 'instant' }); });
 </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/brands.min.css">
+<style id="rc-v12-commun">
+/* Ajouts du 28/09/2026 : bouton WhatsApp flottant, réseaux sociaux, encadré de fin */
+.rc-wa{position:fixed;right:22px;bottom:22px;z-index:400;display:flex;align-items:center;gap:10px;text-decoration:none;}
+.rc-wa-bub{width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 10px 28px rgba(37,211,102,0.35);transition:transform .2s;}
+.rc-wa:hover .rc-wa-bub{transform:scale(1.06);}
+.rc-wa-lbl{background:#fff;color:#0D0D12;border:1px solid rgba(13,13,18,0.07);border-radius:50px;padding:9px 14px;font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:600;box-shadow:0 8px 20px rgba(0,0,0,0.08);opacity:0;transform:translateX(8px);transition:all .2s;pointer-events:none;}
+.rc-wa:hover .rc-wa-lbl{opacity:1;transform:none;}
+@media(max-width:768px){.rc-wa{right:14px;bottom:calc(14px + env(safe-area-inset-bottom));}.rc-wa-bub{width:52px;height:52px;font-size:27px;}.rc-wa-lbl{display:none;}
+ .rc-wa.rc-wa-haut{bottom:calc(84px + env(safe-area-inset-bottom));}}
+.rc-socials{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:0.8rem;color:rgba(13,13,18,0.45);font-weight:600;}
+.rc-socials a{width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(13,13,18,0.07);display:flex;align-items:center;justify-content:center;color:#0D0D12;font-size:17px;text-decoration:none;background:#fff;transition:all .2s;}
+.rc-socials a:hover{border-color:rgba(91,47,212,0.35);color:#5B2FD4;}
+.rc-socials.rc-sombre{justify-content:center;color:rgba(255,255,255,0.55);margin-top:22px;position:relative;}
+.rc-socials.rc-sombre a{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.18);color:#fff;}
+.rc-band-wrap{max-width:900px;margin:0 auto;padding:40px 24px 80px;}
+.rc-band{display:grid;grid-template-columns:1.1fr 1fr;background:#fff;border:1.5px solid rgba(91,47,212,0.15);border-radius:28px;overflow:hidden;box-shadow:0 24px 50px rgba(91,47,212,0.08);}
+.rc-band-l{padding:36px 34px;background:linear-gradient(135deg,rgba(91,47,212,.06),rgba(10,143,130,.06));}
+.rc-band-l h2{font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;line-height:1.2;margin:0;color:#0D0D12;}
+.rc-band-l p{color:rgba(13,13,18,0.55);font-size:0.9rem;margin:10px 0 0;line-height:1.6;}
+.rc-band-btn{display:inline-flex;align-items:center;gap:8px;margin-top:22px;padding:15px 26px;border-radius:14px;background:linear-gradient(135deg,#5B2FD4 0%,#0A8F82 100%);color:#fff;font-weight:700;font-size:0.95rem;text-decoration:none;box-shadow:0 8px 28px rgba(91,47,212,0.28);transition:opacity .2s,transform .2s;}
+.rc-band-btn:hover{opacity:.9;transform:translateY(-2px);}
+.rc-band-r{padding:30px 32px;display:flex;flex-direction:column;justify-content:center;gap:14px;}
+.rc-ck{display:flex;gap:10px;align-items:flex-start;font-size:0.88rem;}
+.rc-ck-ic{width:24px;height:24px;border-radius:50%;background:rgba(10,143,130,0.09);color:#0A8F82;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.72rem;flex:none;}
+.rc-ck b{display:block;font-weight:700;color:#0D0D12;}
+.rc-ck small{color:rgba(13,13,18,0.45);font-size:0.8rem;}
+.rc-band-r .rc-socials{margin-top:4px;padding-top:14px;border-top:1px solid rgba(13,13,18,0.07);}
+@media(max-width:768px){.rc-band{grid-template-columns:1fr;}.rc-band-l{padding:30px 24px;}.rc-band-r{padding:24px;}.rc-band-wrap{padding:30px 16px 110px;}.rc-band-btn{width:100%;justify-content:center;white-space:nowrap;font-size:0.9rem;padding:15px 16px;}}
+</style>
 </head>
 <body>
 
@@ -1660,6 +1691,7 @@ i.cmp-ic{
     </label>
     <button type="submit">Estimer mes revenus locatifs →</button>
   </form>
+<div class="rc-socials rc-sombre"><span>Suivez-nous</span><a href="https://www.instagram.com/rconciergerie" target="_blank" rel="noopener" aria-label="Instagram de R Conciergerie"><i class="fa-brands fa-instagram"></i></a><a href="https://www.facebook.com/profile.php?id=61580965041989" target="_blank" rel="noopener" aria-label="Facebook de R Conciergerie"><i class="fa-brands fa-facebook-f"></i></a><a href="https://www.linkedin.com/company/r-conciergerie/" target="_blank" rel="noopener" aria-label="LinkedIn de R Conciergerie"><i class="fa-brands fa-linkedin-in"></i></a></div>
 </div>
 </div>
 <script>
@@ -1806,5 +1838,6 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <script data-goatcounter="https://rconciergerie.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<a class="rc-wa rc-wa-haut" href="https://wa.me/33629883919?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20votre%20conciergerie." target="_blank" rel="noopener" aria-label="Nous écrire sur WhatsApp"><span class="rc-wa-lbl">Une question ? Écrivez-nous</span><span class="rc-wa-bub"><i class="fa-brands fa-whatsapp"></i></span></a>
 </body>
 </html>

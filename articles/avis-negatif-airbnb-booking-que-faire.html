@@ -272,62 +272,76 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
 }
 
 /* ===================================================================
-   REFONTE PAGE ARTICLE — ajouts posés PAR-DESSUS le CSS du site.
+   REFONTE PAGE ARTICLE : ajouts posés PAR-DESSUS le CSS du site.
    Aucune variable, aucune couleur, aucune police n'est redéfinie :
    tout vient de la charte déjà en place (--purple, --teal, --grad...).
    =================================================================== */
 
-/* Bandeau de titre, repris du bloc sombre déjà utilisé en bas de page */
-.a-hero{background:linear-gradient(135deg,#161622 0%,#1a1a2e 55%,#0f2027 100%);
- padding:78px 24px 122px;position:relative;overflow:hidden;text-align:center;}
-.a-hero::before,.a-hero::after{content:'';position:absolute;border-radius:50%;}
-.a-hero::before{width:540px;height:540px;top:-200px;left:-150px;
- background:radial-gradient(circle,rgba(91,47,212,0.42),transparent 66%);}
-.a-hero::after{width:470px;height:470px;bottom:-190px;right:-130px;
- background:radial-gradient(circle,rgba(10,143,130,0.34),transparent 66%);}
-.a-hero-in{position:relative;max-width:900px;margin:0 auto;padding:0 24px;}
-.a-cat{display:inline-block;padding:7px 18px;border-radius:50px;background:rgba(255,255,255,0.09);
- border:1px solid rgba(255,255,255,0.16);color:#c4b5fd;font-size:0.68rem;font-weight:700;
- text-transform:uppercase;letter-spacing:1.1px;}
-.a-hero h1{color:#fff;font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-0.03em;
- line-height:1.12;margin:26px 0 24px;}
-.a-hero h1 .g{background:linear-gradient(135deg,#a78bfa,#5eead4);
- -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-.a-meta{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:11px;
- font-size:0.81rem;color:rgba(255,255,255,0.45);font-weight:500;}
-.a-meta i{font-style:normal;width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.6;}
-
-/* Le texte en pastilles : une par partie, le fond du site passe entre elles */
-.a-corps{max-width:900px;margin:0 auto;padding:0 24px;}
-.a-bloc{background:#fff;border:1.5px solid var(--border);border-radius:26px;
- padding:36px 40px;margin-bottom:16px;box-shadow:0 14px 40px rgba(0,0,0,0.05);}
-.a-bloc:first-child{margin-top:-84px;position:relative;border-radius:30px;padding:44px 40px;
- box-shadow:0 30px 70px rgba(0,0,0,0.09);}
+/* Page article au style de la page d'accueil (28/09/2026) : haut de page clair, parties numérotées */
+.a-hero{padding:132px 24px 34px;text-align:center;}
+.a-hero-in{max-width:900px;margin:0 auto;}
+.a-hero h1{color:var(--fg);font-size:clamp(1.85rem,4.4vw,2.9rem);font-weight:800;letter-spacing:-0.03em;line-height:1.12;margin:0 0 22px;}
+.a-hero h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.a-meta{display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;padding:9px 18px;background:#fff;border:1px solid var(--border);border-radius:50px;font-size:0.8rem;color:var(--muted);font-weight:600;}
+.a-meta .a-rub{color:var(--purple);}
+.a-meta i{font-style:normal;width:4px;height:4px;border-radius:50%;background:rgba(13,13,18,0.25);}
+.a-corps{max-width:820px;margin:0 auto;padding:0 24px;counter-reset:bloc;}
+.a-bloc{background:#fff;border:1.5px solid var(--border);border-radius:24px;padding:32px 36px;margin-bottom:16px;box-shadow:0 10px 26px rgba(0,0,0,0.04);}
 .a-bloc>*:last-child{margin-bottom:0;}
-.a-bloc p{font-size:1rem;line-height:1.85;color:rgba(13,13,18,0.82);margin-bottom:20px;}
-.a-bloc h2{font-size:1.35rem;font-weight:800;letter-spacing:-0.02em;line-height:1.25;
- margin:0 0 16px;padding:0;border:none;}
-.a-bloc ul,.a-bloc ol{margin:0 0 20px 20px;}
+.a-bloc p{font-size:1rem;line-height:1.85;color:rgba(13,13,18,0.82);margin-bottom:18px;}
+.a-bloc h2{display:flex;align-items:flex-start;gap:14px;font-size:1.3rem;font-weight:800;letter-spacing:-0.02em;line-height:1.3;margin:0 0 16px;padding:0;border:none;}
+.a-bloc h2::before{counter-increment:bloc;content:counter(bloc);flex:none;width:34px;height:34px;border-radius:10px;background:var(--grad);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:0.95rem;font-weight:800;}
+.a-bloc ul,.a-bloc ol{margin:0 0 18px 20px;}
 .a-bloc li{font-size:1rem;line-height:1.85;color:rgba(13,13,18,0.82);margin-bottom:8px;}
-.a-bloc a{color:var(--purple);text-decoration:underline;}
-.a-bloc blockquote{border-left:3px solid var(--purple);padding-left:20px;margin:0 0 20px;
- color:rgba(13,13,18,0.7);font-style:italic;}
-.a-lead{font-size:1.2rem!important;line-height:1.65!important;font-weight:500;color:var(--fg)!important;}
-.a-pivot{background:var(--soft-p);border-left:4px solid var(--purple);border-radius:0 16px 16px 0;
- padding:20px 24px;margin:24px 0 4px!important;color:var(--fg)!important;}
-.a-chiffres{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin:26px 0 4px;}
-.a-kpi{background:var(--bg);border:1px solid var(--border);border-radius:18px;padding:20px 22px;}
-.a-kpi b{display:block;font-size:1.9rem;font-weight:800;letter-spacing:-0.03em;line-height:1;
- margin-bottom:7px;background:var(--grad);-webkit-background-clip:text;background-clip:text;
- -webkit-text-fill-color:transparent;}
+.a-bloc a{color:var(--purple);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(91,47,212,0.3);}
+.a-bloc blockquote{border-left:3px solid var(--purple);padding-left:20px;margin:0 0 18px;color:rgba(13,13,18,0.7);font-style:italic;}
+.a-lead{font-size:1.15rem!important;line-height:1.7!important;font-weight:500;color:var(--fg)!important;}
+.a-pivot{background:linear-gradient(135deg,rgba(91,47,212,.07),rgba(10,143,130,.07));border:1.5px solid rgba(91,47,212,0.18);border-radius:18px;padding:18px 22px;margin:22px 0 18px!important;color:var(--fg)!important;}
+.a-chiffres{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:22px 0 18px;}
+.a-kpi{background:var(--bg);border-radius:16px;padding:18px 20px;text-align:center;}
+.a-kpi b{display:block;font-size:1.8rem;font-weight:800;letter-spacing:-0.03em;line-height:1.1;margin-bottom:6px;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .a-kpi span{font-size:0.79rem;color:var(--muted);font-weight:500;line-height:1.5;display:block;}
 
 @media(max-width:640px){
- .a-hero{padding:54px 20px 104px;}
- .a-bloc{padding:26px 22px;border-radius:22px;}
- .a-bloc:first-child{margin-top:-72px;padding:30px 22px;border-radius:24px;}
+ .a-hero{padding:108px 18px 26px;}
+ .a-meta{font-size:0.74rem;padding:8px 14px;gap:6px 8px;border-radius:16px;}
+ .a-corps{padding:0 14px;}
+ .a-bloc{padding:24px 20px;border-radius:20px;}
+ .a-bloc h2{font-size:1.14rem;gap:12px;}
+ .a-bloc h2::before{width:30px;height:30px;font-size:0.85rem;}
  .a-chiffres{grid-template-columns:1fr;}
 }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/brands.min.css">
+<style id="rc-v12-commun">
+/* Ajouts du 28/09/2026 : bouton WhatsApp flottant, réseaux sociaux, encadré de fin */
+.rc-wa{position:fixed;right:22px;bottom:22px;z-index:400;display:flex;align-items:center;gap:10px;text-decoration:none;}
+.rc-wa-bub{width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 10px 28px rgba(37,211,102,0.35);transition:transform .2s;}
+.rc-wa:hover .rc-wa-bub{transform:scale(1.06);}
+.rc-wa-lbl{background:#fff;color:#0D0D12;border:1px solid rgba(13,13,18,0.07);border-radius:50px;padding:9px 14px;font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:600;box-shadow:0 8px 20px rgba(0,0,0,0.08);opacity:0;transform:translateX(8px);transition:all .2s;pointer-events:none;}
+.rc-wa:hover .rc-wa-lbl{opacity:1;transform:none;}
+@media(max-width:768px){.rc-wa{right:14px;bottom:calc(14px + env(safe-area-inset-bottom));}.rc-wa-bub{width:52px;height:52px;font-size:27px;}.rc-wa-lbl{display:none;}
+ .rc-wa.rc-wa-haut{bottom:calc(84px + env(safe-area-inset-bottom));}}
+.rc-socials{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:0.8rem;color:rgba(13,13,18,0.45);font-weight:600;}
+.rc-socials a{width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(13,13,18,0.07);display:flex;align-items:center;justify-content:center;color:#0D0D12;font-size:17px;text-decoration:none;background:#fff;transition:all .2s;}
+.rc-socials a:hover{border-color:rgba(91,47,212,0.35);color:#5B2FD4;}
+.rc-socials.rc-sombre{justify-content:center;color:rgba(255,255,255,0.55);margin-top:22px;position:relative;}
+.rc-socials.rc-sombre a{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.18);color:#fff;}
+.rc-band-wrap{max-width:900px;margin:0 auto;padding:40px 24px 80px;}
+.rc-band{display:grid;grid-template-columns:1.1fr 1fr;background:#fff;border:1.5px solid rgba(91,47,212,0.15);border-radius:28px;overflow:hidden;box-shadow:0 24px 50px rgba(91,47,212,0.08);}
+.rc-band-l{padding:36px 34px;background:linear-gradient(135deg,rgba(91,47,212,.06),rgba(10,143,130,.06));}
+.rc-band-l h2{font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;line-height:1.2;margin:0;color:#0D0D12;}
+.rc-band-l p{color:rgba(13,13,18,0.55);font-size:0.9rem;margin:10px 0 0;line-height:1.6;}
+.rc-band-btn{display:inline-flex;align-items:center;gap:8px;margin-top:22px;padding:15px 26px;border-radius:14px;background:linear-gradient(135deg,#5B2FD4 0%,#0A8F82 100%);color:#fff;font-weight:700;font-size:0.95rem;text-decoration:none;box-shadow:0 8px 28px rgba(91,47,212,0.28);transition:opacity .2s,transform .2s;}
+.rc-band-btn:hover{opacity:.9;transform:translateY(-2px);}
+.rc-band-r{padding:30px 32px;display:flex;flex-direction:column;justify-content:center;gap:14px;}
+.rc-ck{display:flex;gap:10px;align-items:flex-start;font-size:0.88rem;}
+.rc-ck-ic{width:24px;height:24px;border-radius:50%;background:rgba(10,143,130,0.09);color:#0A8F82;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.72rem;flex:none;}
+.rc-ck b{display:block;font-weight:700;color:#0D0D12;}
+.rc-ck small{color:rgba(13,13,18,0.45);font-size:0.8rem;}
+.rc-band-r .rc-socials{margin-top:4px;padding-top:14px;border-top:1px solid rgba(13,13,18,0.07);}
+@media(max-width:768px){.rc-band{grid-template-columns:1fr;}.rc-band-l{padding:30px 24px;}.rc-band-r{padding:24px;}.rc-band-wrap{padding:30px 16px 110px;}.rc-band-btn{width:100%;justify-content:center;white-space:nowrap;font-size:0.9rem;padding:15px 16px;}}
 </style>
 </head>
 <body>
@@ -338,21 +352,22 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
   </a>
   <div class="nav-links">
     <a href="/">Accueil</a>
+    <a href="/#avis-proprietaires">Avis</a>
+    <a href="/#pourquoi">Pourquoi</a>
     <a href="/#services">Notre offre</a>
-    <a href="/#checklist">Checklist équipement</a>
-    <a href="/#histoire">Notre histoire</a>
-    <a href="/articles.html" class="nav-active">Articles</a>
-    <a href="/#avis">Avis</a>
+    <a href="/#tarif">Tarif</a>
+    <a href="/checklist-equipement">Checklist</a>
+    <a href="/#faq">Questions</a>
+    <a href="/articles" class="nav-active">Articles</a>
   </div>
   <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('nav-open')" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
-  <a class="nav-cta" href="/#contact">Contactez-nous</a>
+  <a class="nav-cta" href="/#contact">Estimer mes revenus</a>
 </nav>
 <div class="a-hero"><div class="a-hero-in">
-  <span class="a-cat">Avis voyageurs</span>
   <h1>Avis négatif sur Airbnb ou Booking :<br><span class="g">que faire ?</span></h1>
-  <div class="a-meta"><span>10 août 2026</span><i></i><span>3 min de lecture</span></div>
+  <div class="a-meta"><span class="a-rub">Avis voyageurs</span><i></i><span>10 août 2026</span><i></i><span>3 min de lecture</span></div>
 </div></div>
 <div class="a-corps">
 <section class="a-bloc">
@@ -389,21 +404,16 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
 </section>
 </div>
 <div class="article-back"><a href="/articles" class="back-link">&larr; Tous les articles</a></div>
-<div class="cta-final-wrap">
-  <div class="cta-final">
-    <h2>On s'en occupe,<br>vous <span class="g">gardez la main</span></h2>
-    <p>Ozoir-la-Ferrière · Gretz-Armainvilliers · Seine-et-Marne (77)</p>
-    <div class="cta-links">
-      <a href="https://wa.me/33629883919" class="cl cl-wa" target="_blank" rel="noopener">💬 WhatsApp</a>
-      <a href="mailto:vroy.conciergerie@gmail.com" class="cl cl-mail">✉️ vroy.conciergerie@gmail.com</a>
-    </div>
-  </div>
-</div>
+<section class="rc-band-wrap"><div class="rc-band">
+  <div class="rc-band-l"><h2>Vous préférez qu'on s'en occupe ?</h2><p>Ménage, linge, accueil des voyageurs, annonces Airbnb et Booking : on s'occupe de tout, vous gardez la main sur votre bien.</p><a href="/#contact" class="rc-band-btn">Estimer mes revenus gratuitement</a></div>
+  <div class="rc-band-r"><div class="rc-ck"><span class="rc-ck-ic">✓</span><div><b>20 % sur les revenus locatifs</b><small>Hors frais de ménage</small></div></div><div class="rc-ck"><span class="rc-ck-ic">✓</span><div><b>Sans durée d'engagement</b><small>Préavis d'un mois</small></div></div><div class="rc-ck"><span class="rc-ck-ic">✓</span><div><b>Réponse sous 24 h</b><small>Seine-et-Marne (77)</small></div></div><div class="rc-socials"><span>Suivez-nous</span><a href="https://www.instagram.com/rconciergerie" target="_blank" rel="noopener" aria-label="Instagram de R Conciergerie"><i class="fa-brands fa-instagram"></i></a><a href="https://www.facebook.com/profile.php?id=61580965041989" target="_blank" rel="noopener" aria-label="Facebook de R Conciergerie"><i class="fa-brands fa-facebook-f"></i></a><a href="https://www.linkedin.com/company/r-conciergerie/" target="_blank" rel="noopener" aria-label="LinkedIn de R Conciergerie"><i class="fa-brands fa-linkedin-in"></i></a></div></div>
+</div></section>
+
 <footer>
   <div class="footer-inner">
     <div class="footer-mentions">
       <strong>Mentions légales</strong>
-      <span>Éditeur du site : R-CONCIERGERIE (nom commercial R Conciergerie), SASU au capital de 1 000 €</span>
+      <span>Éditeur du site : R-CONCIERGERIE (nom commercial R Conciergerie), société par actions simplifiée à associé unique au capital de 1 000 €</span>
       <span>RCS Melun 990 295 057 · SIRET 990 295 057 00014</span>
       <span>Siège social : Clos Arboretum, 1 bis rue de Paris, 77220 Gretz-Armainvilliers, France</span>
       <span>Téléphone : 06 29 88 39 19 · Email : <a href="mailto:vroy.conciergerie@gmail.com">vroy.conciergerie@gmail.com</a></span>
@@ -415,5 +425,6 @@ footer{padding:40px 24px 32px;border-top:1px solid var(--border);}
     <span class="footer-copy">© 2026 R Conciergerie · Tous droits réservés</span>
   </div>
 </footer>
+<a class="rc-wa" href="https://wa.me/33629883919?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20votre%20conciergerie." target="_blank" rel="noopener" aria-label="Nous écrire sur WhatsApp"><span class="rc-wa-lbl">Une question ? Écrivez-nous</span><span class="rc-wa-bub"><i class="fa-brands fa-whatsapp"></i></span></a>
 </body>
 </html>
